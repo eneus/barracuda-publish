@@ -1,0 +1,458 @@
+<?php
+
+// hook_menu()
+function russian_beauty_calendar_menu() {
+	$items = array();
+	$items['calendar/%russian_beauty_calendar_year/%russian_beauty_calendar_month/%russian_beauty_calendar_day'] = array(
+		'title' => 'All activities for the day',
+		'page callback' => 'russian_beauty_calendar_day_nodes',
+		'page arguments' => array(1,2,3),
+		'access callback' => 'user_access',
+		'access arguments' => array('access content'),
+		'type' => MENU_LOCAL_TASK
+	);
+	$items['calendar_get/%russian_beauty_calendar_day'] = array(
+		'title' => 'Calendar',
+		'page callback' => 'russian_beauty_calendar_content_loader',
+		'page arguments' => array(1),
+		'access callback' => 'user_access',
+		'access arguments' => array('access content'),
+		'type' => MENU_LOCAL_TASK
+	);
+	$items['calendar_links/%russian_beauty_calendar_year/%russian_beauty_calendar_month/%russian_beauty_calendar_day'] = array(
+		'title' => 'Calendar',
+		'page callback' => 'russian_beauty_calendar_links_loader',
+		'page arguments' => array(1,2,3),
+		'access callback' => 'user_access',
+		'access arguments' => array('access content'),
+		'type' => MENU_LOCAL_TASK
+	);
+	$items['calendar'] = array(
+		'title' => 'Calendar',
+		'page callback' => 'russian_beauty_calendar_full',
+		'access callback' => 'user_access',
+		'access arguments' => array('access content'),
+		'type' => MENU_LOCAL_TASK
+	);
+	return $items;
+}
+function russian_beauty_calendar_year_to_arg($arg) { return empty($arg) ? date("Y") : $arg; }
+function russian_beauty_calendar_month_to_arg($arg) { return empty($arg) ? date("m") : $arg; }
+function russian_beauty_calendar_day_to_arg($arg) { return empty($arg) ? date("d") : $arg; }
+
+// hook_init()
+function russian_beauty_calendar_init() {
+	$theme = variable_get('russian_beauty_calendar_theme', 'standard');
+	drupal_add_css(drupal_get_path('module', 'russian_beauty_calendar').'/themes/'.$theme.'/calendar.css');
+	drupal_add_js(drupal_get_path('module', 'russian_beauty_calendar').'/themes/'.$theme.'/script.js');
+}
+
+// hook_block_info()
+function russian_beauty_calendar_block_info() {
+	$blocks['calendar']['info'] = t('Calendar');
+	$blocks['calendar']['properties']['administrative'] = TRUE;
+	return $blocks;
+}
+// hook_block_configure()
+function russian_beauty_calendar_block_configure($delta = '') {
+	$node_types = node_type_get_types();
+	$node_type_options = array();
+	$node_type_options[''] = t('All node types');
+	foreach ($node_types as $node_type) {
+		$node_type_options[$node_type->type] = $node_type->name;
+	}
+	
+	// search themes
+	$themes = array();
+	$theme_path = drupal_get_path('module', 'russian_beauty_calendar').'/themes/';
+	if ($handle = opendir($theme_path)) {
+		// check for directory, calendar.css and script.js
+		while (false !== ($dir = readdir($handle)))
+			if (is_dir($theme_path . $dir) &&
+				file_exists($theme_path . $dir . '/calendar.css') &&
+				file_exists($theme_path . $dir . '/script.js'))
+					$themes[$dir] = $dir;
+		closedir($handle);
+	}
+	$form['russian_beauty_calendar_theme'] = array(
+		'#type' => 'select',
+		'#options' => $themes,
+		'#title' => t('Theme'),
+		'#default_value' => variable_get('russian_beauty_calendar_theme', 'standard'),
+		'#description' => t('Select calendar appearance.'),
+	);
+	
+	$form['russian_beauty_calendar_node_type'] = array(
+		'#type' => 'select',
+		'#options' => $node_type_options,
+		'#multiple' => true,
+		'#title' => t('Node type'),
+		'#default_value' => explode(',', variable_get('russian_beauty_calendar_node_type', '')),
+		'#description' => t('Select node type. Hold down the CTRL key to select multiple node types.'),
+	);
+	
+	// search date fields
+	$fields = field_info_fields();
+	$fields_options[''] = t('Node creation date');
+	
+	$date_module = module_exists('date');
+	if ($date_module) {
+		$field_desc = 'Select field that contains the date of the event. By default, nodes will be selected by date of creation.';
+		foreach ($fields as $field_type => $field_data) {
+			if ($field_data['module'] == 'date')
+				$fields_options[$field_type] = $field_type;
+		}
+		if (count($fields_options) == 1)
+			$field_desc = '<span style="color:red; font-weight:bold;">' . t('There are no date fields') . '</span>';
+	}
+	else $field_desc = '<span style="color:red; font-weight:bold;">' . t('<a href="http://drupal.org/project/date" target="_blank">Date</a> module is not installed') . '</span>';
+	
+	$form['russian_beauty_calendar_field_date'] = array(
+		'#type' => 'select',
+		'#options' => $fields_options,
+		'#disabled' => !$date_module,
+		'#title' => t('Date field'),
+		'#default_value' => variable_get('russian_beauty_calendar_field_date', ''),
+		'#description' => $field_desc,
+	);
+	$form['russian_beauty_calendar_title_words'] = array(
+		'#type' => 'textfield',
+		'#size' => 64,
+		'#maxlength' => 64,
+		'#title' => t('Event headings'),
+		'#default_value' => variable_get('russian_beauty_calendar_title_words', t('story,stories')),
+		'#description' => t('Choose a name for the events that will be displayed in the calendar when mouse hover on date. For example, "12 events". Enter a comma-separated words for numbers (for example, "event, events, events").'),
+	);
+	$form['russian_beauty_calendar_node_per_page'] = array(
+		'#type' => 'select',
+		'#options' => drupal_map_assoc(array(5, 10, 15, 20, 25, 30, 40, 50, 80, 100)),
+		'#title' => t('Number of nodes per page'),
+		'#default_value' => variable_get('russian_beauty_calendar_node_per_page', '20'),
+	);
+	$form['russian_beauty_calendar_preload_tooltips'] = array(
+		'#type' => 'select',
+		'#options' => array('+' => t('Yes'), '-' => t('No')),
+		'#title' => t('Tooltip type'),
+		'#default_value' => variable_get('russian_beauty_calendar_preload_tooltips', '-'),
+		'#description' => t('Select how to display tooltips. If you specify "No", then tooltip will display the amount of nodes to date. Otherwise, a tooltip will display links to nodes.'),
+	);
+	$form['russian_beauty_calendar_tooltip_count'] = array(
+		'#type' => 'select',
+		'#options' => drupal_map_assoc(array(1, 2, 3, 4, 5, 8, 10, 15, 20)),
+		'#title' => t('Number of links in the tooltip'),
+		'#default_value' => variable_get('russian_beauty_calendar_tooltip_count', '5'),
+		'#description' => t('Specify the number of links in the tooltip (if links display selected for tooltip display type).'),
+	);
+	
+	return $form;
+}
+// hook_block_save()
+function russian_beauty_calendar_block_save($delta = '', $edit = array()) {
+	variable_set('russian_beauty_calendar_theme', $edit['russian_beauty_calendar_theme']);
+	variable_set('russian_beauty_calendar_node_type', implode(",", $edit['russian_beauty_calendar_node_type']));
+	variable_set('russian_beauty_calendar_field_date', $edit['russian_beauty_calendar_field_date']);
+	variable_set('russian_beauty_calendar_node_per_page', $edit['russian_beauty_calendar_node_per_page']);
+	variable_set('russian_beauty_calendar_title_words', $edit['russian_beauty_calendar_title_words']);
+	variable_set('russian_beauty_calendar_preload_tooltips', $edit['russian_beauty_calendar_preload_tooltips']);
+	variable_set('russian_beauty_calendar_tooltip_count', $edit['russian_beauty_calendar_tooltip_count']);
+}
+// hook_block_view()
+function russian_beauty_calendar_block_view($delta = '') {
+	$block['subject'] = t('Calendar');
+	$block['content'] = russian_beauty_calendar_block_container();
+	return $block;
+}
+function russian_beauty_calendar_block_container() {
+	global $language;
+	
+	$m = date('m');
+	$y = date('Y');
+	
+	if(arg(0) == 'calendar') {
+		if (arg(1) > 0) $y = (int)arg(1);
+		if (arg(2) > 0) $m = (int)arg(2);
+	}
+	
+	if(arg(0) == 'node' && arg(1) > 0) {
+		$type = variable_get('russian_beauty_calendar_node_type', '');
+		$node = node_load(arg(1));
+		if (($node->type == $type && $type != '%') || ($type == '%')) {
+			$m = date('m', $node->created);
+			$y = date('Y', $node->created);
+		}
+	}
+
+	$output = '';
+	$output .= '<div class="block-calendar"><div class="calendar-container">';
+	
+	$output .=	'<div class="rbc_daynames">'.
+				'<div class="rbc_day"><div class="rbc_value">'.format_date(mktime(0,0,0,1,1,2001), 'custom', 'D', NULL, $language->language).'</div></div>'.
+				'<div class="rbc_day"><div class="rbc_value">'.format_date(mktime(0,0,0,1,2,2001), 'custom', 'D', NULL, $language->language).'</div></div>'.
+				'<div class="rbc_day"><div class="rbc_value">'.format_date(mktime(0,0,0,1,3,2001), 'custom', 'D', NULL, $language->language).'</div></div>'.
+				'<div class="rbc_day"><div class="rbc_value">'.format_date(mktime(0,0,0,1,4,2001), 'custom', 'D', NULL, $language->language).'</div></div>'.
+				'<div class="rbc_day"><div class="rbc_value">'.format_date(mktime(0,0,0,1,5,2001), 'custom', 'D', NULL, $language->language).'</div></div>'.
+				'<div class="rbc_weekend"><div class="rbc_value">'.format_date(mktime(0,0,0,1,6,2001), 'custom', 'D', NULL, $language->language).'</div></div>'.
+				'<div class="rbc_weekend rbc_last"><div class="rbc_value">'.format_date(mktime(0,0,0,1,7,2001), 'custom', 'D', NULL, $language->language).'</div></div>'.
+				'</div>';
+	$output .= '<div id="calendar-body">'.russian_beauty_calendar_block_content(mktime(0, 0, 0, $m, 1, $y)) . '</div>';
+	$output .= '</div></div>';
+	
+	return $output;
+}
+function russian_beauty_calendar_block_content($month) {
+	global $language;
+	
+	$type = variable_get('russian_beauty_calendar_node_type', '');
+	
+	$month = mktime(0, 0, 0, date('m',$month), 1, date('Y',$month));
+	$dayofmonth = date('t', $month);
+	$day_count = 1;
+	$month_name = '';
+	if ($language->language == 'ru') {
+		switch (date("m", $month)) { case 1: $month_name = 'Январь'; break; case 2: $month_name = 'Февраль'; break; case 3: $month_name = 'Март'; break; case 4: $month_name = 'Апрель'; break; case 5: $month_name = 'Май'; break; case 6: $month_name = 'Июнь'; break; case 7: $month_name = 'Июль'; break; case 8: $month_name = 'Август'; break; case 9: $month_name = 'Сентябрь'; break; case 10: $month_name = 'Октябрь'; break; case 11: $month_name = 'Ноябрь'; break; case 12: $month_name = 'Декабрь'; break; }
+	} 
+	elseif ($language->language == 'uk') {
+		switch (date("m", $month)) { case 1: $month_name = 'Січень'; break; case 2: $month_name = 'Лютий'; break; case 3: $month_name = 'Березень'; break; case 4: $month_name = 'Квітень'; break; case 5: $month_name = 'Травень'; break; case 6: $month_name = 'Червень'; break; case 7: $month_name = 'Липень'; break; case 8: $month_name = 'Серпень'; break; case 9: $month_name = 'Вересень'; break; case 10: $month_name = 'Жовтень'; break; case 11: $month_name = 'Листопад'; break; case 12: $month_name = 'Грудень'; break; }
+	} else {
+		$month_name = format_date($month, 'custom', 'M', NULL, $language->language);
+	}
+	$month_name .= ' ' . date('Y', $month);
+	$num = 0;
+	for($i = 0; $i < 7; $i++) {
+		$dayofweek = date('w', mktime(0, 0, 0, date('m',$month), $day_count, date('Y',$month)));
+		$dayofweek = $dayofweek - 1;
+		if($dayofweek == -1) $dayofweek = 6;
+		if($dayofweek == $i) {
+			$week[$num][$i] = $day_count;
+			$day_count++;
+		} else { $week[$num][$i] = ""; }
+	}
+	while(true) {
+		$num++;
+		for($i = 0; $i < 7; $i++) {
+			$week[$num][$i] = $day_count;
+			$day_count++;
+			if($day_count > $dayofmonth) break;
+		}
+		if($day_count > $dayofmonth) break;
+	}
+	$day_nids = array();
+	for ($i = 1; $i < 32; $i++) { $day_nids[$i] = 0; }
+	
+	$field_name = variable_get('russian_beauty_calendar_field_date', '');
+	$node_type = variable_get('russian_beauty_calendar_node_type', '');
+	
+	$output = '';
+	
+	$nids = russian_beauty_calendar_select_month_nodes($month);
+	if (isset($nids['error'])) {
+		//print '<!-- '; print_r($nids['error']); print ' -->';
+		$output .= '<center><span style="color:red">' . t('database error') . '</span></center>';
+	} else {
+		foreach ($nids as $row) {
+			$field_name = variable_get('russian_beauty_calendar_field_date', '');
+			if ($field_name != '') $field_name .= '_value';
+			if (isset($row->$field_name))  $day_nids[(int)date('d', strtotime($row->$field_name))]++;
+			else if (isset($row->created)) $day_nids[(int)date('d', $row->created)]++;
+		}
+	}
+	
+	for($i = 0; $i < count($week); $i++) {
+		$output .= '<div class="rbc_week">';
+		for($j = 0; $j < 7; $j++) {
+			$cls = '';
+			if ($j > 4) $cls = 'rbc_weekend';
+			else $cls = 'rbc_day';
+			if ($j == 6) $cls .= ' rbc_last';
+			if(!empty($week[$i][$j])) {
+				$day = $week[$i][$j];
+				if ($day == date('d') && date('m.Y') == date('m.Y', $month)) $cls .= ' rbc_today';
+				$count = $day_nids[$day];
+				$use_rel = variable_get('russian_beauty_calendar_preload_tooltips', '-') == '-' ? false : true;
+				$date_part = date('Y', $month).'/'.date('m', $month).'/'.($day > 9 ? $day : '0'.$day);
+				if ($count) $output .= '<a class="tooltip" title="'.russian_beauty_calendar_plural($count). '"' . ($use_rel ? ' rel="'.$date_part.'"' : '' ) . ' href="/calendar/'.$date_part.'">';
+				$output .= '<div class="'.$cls.'"><div class="rbc_value">'.$day.'</div></div>';
+				if ($count) $output .= '</a>';
+			} else $output .= '<div class="'.$cls.' blank"><div class="rbc_value"></div></div>';
+		}
+		$output .= '</div>';
+	}
+	
+	$output .= '<div class="rbc_month"><a href="javascript:calendar_prev();" rel="'.mktime(0, 0, 0, date('m',$month)-1, 1, date('Y',$month)).'"><div class="calendar-prev">&nbsp;</div></a><div class="month-title">';
+	$output .= $month_name;
+	$output .= '</div><a href="javascript:calendar_next();" rel="'.mktime(0, 0, 0, date('m',$month)+1, 1, date('Y',$month)).'"><div class="calendar-next">&nbsp;</div></a></div>';
+
+	return $output;
+}
+
+/* ajax answer */
+function russian_beauty_calendar_content_loader($arg) {
+	header('Content-Type: text/html; charset=utf-8'); 
+	$arg = (int)$arg;
+	print russian_beauty_calendar_block_content($arg);
+	exit;
+}
+function russian_beauty_calendar_links_loader($russian_beauty_calendar_year, $russian_beauty_calendar_month, $russian_beauty_calendar_day) {
+	header('Content-Type: text/html; charset=utf-8'); 
+	
+	$irussian_beauty_calendar_year = (int)$russian_beauty_calendar_year; $irussian_beauty_calendar_month = (int)$russian_beauty_calendar_month; $irussian_beauty_calendar_day = (int)$russian_beauty_calendar_day;
+	$date = mktime(0,0,0,$irussian_beauty_calendar_month,$irussian_beauty_calendar_day,$irussian_beauty_calendar_year);
+	
+	$result = russian_beauty_calendar_select_nodes($date, true);
+	if (count($result) == 0) {
+		print 'Error';
+		exit;
+	}
+	
+	$tooltip_count = variable_get('russian_beauty_calendar_tooltip_count', '5');
+	$counter = 0;
+	print '<ul>';
+	foreach ($result as $row) {
+		print '<li>' . l($row->title, 'node/'.$row->nid) . '</li>';
+		$counter++;
+		if ($counter >= $tooltip_count) break;
+	}
+	print '</ul>';
+	$more_links = count($result) - $tooltip_count;
+	if ($more_links > 0) {
+		print '<p class="tooltip_summary">' . l(t('more') . ' ' . russian_beauty_calendar_plural($more_links), "calendar/$russian_beauty_calendar_year/$russian_beauty_calendar_month/$russian_beauty_calendar_day") .  '</p>';
+	}
+	
+	exit;
+}
+
+
+/* utils */
+function russian_beauty_calendar_plural($count) {
+	$words = explode(',', variable_get('russian_beauty_calendar_title_words', t('story,stories')));
+	if (!isset($words[0]) || !isset($words[1])) $words = explode(',', t('story,stories'));
+	if (!isset($words[2])) $words[2] = $words[1]; // third array element used for correct russian plural values
+	
+	$remainder = (int)$count;
+	if ($remainder > 20) $remainder %= 10;
+	if ($remainder == 1) $form = $words[0];
+	elseif ($remainder > 1 && $remainder < 5) $form = $words[1];
+	else $form = $words[2];
+	return $count . ' '	. $form;
+}
+
+/* select & display nodes */
+function russian_beauty_calendar_select_nodes($date = 0, $links_only = false) {
+	$field_name = variable_get('russian_beauty_calendar_field_date', '');
+	$node_types = explode(',', variable_get('russian_beauty_calendar_node_type', ''));
+	
+	// check if field was deleted
+	if (field_info_field($field_name) == '') $field_name = '';
+	
+	// select nodes without date field
+	$select = db_select('node', 'n')
+		->fields('n', array('nid', 'title', 'created'))
+		->condition('status', 1);
+	// check date
+	if ($date > 0) {
+		if ($field_name == '') $select
+				->condition('created', $date, '>=')
+				->condition('created', $date + 86400, '<');
+		else {
+			$select->distinct();
+			$select->leftJoin('field_data_'.$field_name, 'fd', 'fd.entity_id = n.nid');
+			$select->fields('fd', array($field_name.'_value'));
+			$select->where('DATE('.$field_name.'_value) = :date', array(':date' => date('Y.m.d',$date)));
+		}
+	}
+	// check types
+	if ($node_types[0] != '') {
+		$or = db_or();
+		foreach ($node_types as $node_type) $or = $or->condition('n.type', $node_type);
+		$select->condition($or);
+	}
+	$select->orderBy('n.sticky', 'DESC')
+		->orderBy('n.created', 'DESC');
+		
+	if (!$links_only) {
+		$select->extend('PagerDefault')
+			->limit(variable_get('russian_beauty_calendar_node_per_page', '20'))
+			->addTag('node_access');
+		return $select->execute()->fetchCol();
+	} else {
+		$select->addTag('node_access');
+		$result = array();
+		foreach ($select->execute() as $row) $result[] = $row;
+		return $result;
+	}
+}
+function russian_beauty_calendar_select_month_nodes($date = 0) {
+	$field_name = variable_get('russian_beauty_calendar_field_date', '');
+	$node_types = explode(',', variable_get('russian_beauty_calendar_node_type', ''));
+	
+	// check if field was deleted
+	if (field_info_field($field_name) == '') $field_name = '';
+	
+	// select nodes without date field
+	$select = db_select('node', 'n')
+		->fields('n', array('nid', 'title', 'created'))
+		->condition('status', 1);
+	// check date
+	if ($date > 0) {
+		if ($field_name == '') $select
+				->condition('created', mktime(0, 0, 0, date('m',$date), 1, date('Y',$date)), '>=')
+				->condition('created', mktime(0, 0, 0, date('m',$date)+1, 1, date('Y',$date)), '<');
+		else {
+			$select->distinct();
+			$select->leftJoin('field_data_'.$field_name, 'fd', 'fd.entity_id = n.nid');
+			$select->fields('fd', array($field_name.'_value'));
+			$select->where('DATE_FORMAT(fd.'.$field_name.'_value, \'%Y%m\') = :stamp', array(':stamp' => date('Ym',$date)));
+		}
+	}
+	// check types
+	if ($node_types[0] != '') {
+		$or = db_or();
+		foreach ($node_types as $node_type) $or = $or->condition('n.type', $node_type);
+		$select->condition($or);
+	}
+	$select->addTag('node_access');
+	
+	$result = array();
+	
+	try {
+		foreach ($select->execute() as $row) $result[] = $row;
+	}
+	catch (Exception $e) {
+		$result['error'] = $e;
+	}
+	
+	return $result;
+}
+function russian_beauty_calendar_day_nodes($russian_beauty_calendar_year, $russian_beauty_calendar_month, $russian_beauty_calendar_day) {
+	global $language;
+	
+	$russian_beauty_calendar_year = (int)$russian_beauty_calendar_year; $russian_beauty_calendar_month = (int)$russian_beauty_calendar_month; $russian_beauty_calendar_day = (int)$russian_beauty_calendar_day;
+	$date = mktime(0,0,0,$russian_beauty_calendar_month,$russian_beauty_calendar_day,$russian_beauty_calendar_year);
+
+	$build = '';
+	if($date) $build .= '<h3>' . format_date($date, 'custom', 'd F Y', NULL, $language->language) . '</h3>';
+	$build .= russian_beauty_calendar_node_list($date);
+	
+	return $build;
+	
+}
+function russian_beauty_calendar_full() { return russian_beauty_calendar_node_list(); }
+function russian_beauty_calendar_node_list($date = 0) {
+	$nids = russian_beauty_calendar_select_nodes($date);
+	if (!empty($nids)) {
+		$nodes = node_load_multiple($nids);
+		$build = node_view_multiple($nodes);
+		$build['pager'] = array('#theme' => 'pager', '#weight' => 5, );
+		drupal_set_title(t('Activities calendar'));
+	} else {
+		drupal_set_title(t('No activities was found'));
+	}
+	
+	return drupal_render($build);
+	
+}
+
+
+
+
+?>

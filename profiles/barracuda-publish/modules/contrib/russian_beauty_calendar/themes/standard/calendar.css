@@ -1,0 +1,53 @@
+/* calendar styles */
+.block-calendar { width:100%; min-height:40px; }
+#calendar-body { width:100%; position:relative; }
+.calendar-container { border:1px solid #CCC; background-color:#FAFAFA; margin:0; padding:0; }
+.rbc_week, .rbc_daynames { width:100%; overflow:hidden; height:22px; white-space:nowrap; font-size:12px; margin:0; padding:0px; }
+.rbc_week .rbc_weekend, .rbc_week .rbc_day, .rbc_daynames .rbc_weekend, .rbc_daynames .rbc_day { width:14%; height:22px; overflow:visible; display:inline; float:left; text-align:center; }
+.rbc_week .rbc_weekend, .rbc_daynames .rbc_weekend  { width:15%; color:#06C; }
+.rbc_week .rbc_value, .rbc_daynames .rbc_value { width:100%; float:left; height:20px; padding:2px 0 0; border:1px solid #EEE; text-align:center; }
+.rbc_week a { color:#000; font-weight:bold; }
+.rbc_week a div { text-decoration:underline; background-color:#DEE4DA; }
+.rbc_week a:hover div { background-color:#06C; color:#FFF; }
+.rbc_week .rbc_today { color:#D03; }
+.rbc_daynames { text-transform:uppercase; border-bottom:3px solid #CCC; }
+
+.rbc_month { border-top:3px solid #CCC; height:24px; }
+.rbc_month a div { text-decoration:none; }
+.rbc_month { font-weight:bold; width:100%; padding-top:2px; text-align:center; }
+.rbc_month .month-title { padding-top:2px; }
+.rbc_month .calendar-prev, .rbc_month .calendar-next  { position:absolute; width:24px; line-height:18px; height:18px; margin:2px 0; padding:0; border:none; }
+.rbc_month .calendar-prev { bottom:2px; left:2px; }
+.rbc_month .calendar-next { bottom:2px; right:2px; }
+.rbc_month a .calendar-prev { background:transparent url("arrows.png") no-repeat -24px 0; }
+.rbc_month a:hover .calendar-prev { background:transparent url("arrows.png") no-repeat 0 0; }
+.rbc_month a .calendar-next { background:transparent url("arrows.png") no-repeat -24px -18px; }
+.rbc_month a:hover .calendar-next { background:transparent url("arrows.png") no-repeat 0 -18px; }
+
+/* calendar loader styles */
+.calendar_loader { width:0px; height:0px; position:absolute; left:50%; top:50%; }
+.calendar_loader div { margin-left:-24px; margin-top:-40px; background:url("ajax-loader.gif") no-repeat; width:48px; height:48px;}
+
+/* tooltip styles */
+#tiptip_holder { display:none; position:absolute; top:0; left:0; z-index:99999; }
+#tiptip_holder.tip_top { padding-bottom:5px; }
+#tiptip_holder.tip_bottom { padding-top:5px; }
+#tiptip_holder.tip_right { padding-left:5px; }
+#tiptip_holder.tip_left { padding-right:5px; }
+#tiptip_content { font-size:11px; color:#333; text-shadow:0 0 1px #FFF; padding:4px 8px; border:1px solid rgba(0,0,0,0.25); background-color:rgb(215,220,225); border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px; box-shadow:0 0 3px #999; -webkit-box-shadow:0 0 3px #999; -moz-box-shadow:0 0 3px #999; }
+#tiptip_arrow, #tiptip_arrow_inner { position:absolute; border-color:transparent; border-style:solid; border-width:6px; height:0; width:0; }
+#tiptip_holder.tip_top #tiptip_arrow { border-top-color:#fff; border-top-color:rgba(255,255,255,0.35); }
+#tiptip_holder.tip_bottom #tiptip_arrow { border-bottom-color:#fff; border-bottom-color:rgba(255,255,255,0.35); }
+#tiptip_holder.tip_right #tiptip_arrow { border-right-color:#fff; border-right-color:rgba(255,255,255,0.35); }
+#tiptip_holder.tip_left #tiptip_arrow { border-left-color:#fff; border-left-color:rgba(255,255,255,0.35); }
+#tiptip_holder.tip_top #tiptip_arrow_inner { margin-top:-7px; margin-left:-6px; border-top-color:rgb(215,220,225); }
+#tiptip_holder.tip_bottom #tiptip_arrow_inner { margin-top:-5px; margin-left:-6px; border-bottom-color:rgb(215,220,225); }
+#tiptip_holder.tip_right #tiptip_arrow_inner { margin-top:-6px; margin-left:-5px; border-right-color:rgb(215,220,225); }
+#tiptip_holder.tip_left #tiptip_arrow_inner { margin-top:-6px; margin-left:-7px; border-left-color:rgb(215,220,225); }
+#tiptip_content ul{ list-style:none; padding:5px 10px; margin:0; font-size:11px; }
+#tiptip_content a { text-decoration:underline; }
+#tiptip_content .tooltip_summary { text-align:right; padding:0; }
+
+/* tooltip loader styles */
+.tooltip_loader { width:48px; height:48px; padding:8px 8px; }
+.tooltip_loader div { background:url("ajax-loader.gif") no-repeat; width:48px; height:48px;}

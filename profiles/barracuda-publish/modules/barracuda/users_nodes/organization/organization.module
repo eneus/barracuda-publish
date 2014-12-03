@@ -1,0 +1,272 @@
+<?php
+
+/**
+ * @file
+ * Enables multi-user organizations.
+ */
+
+/**
+ * Implements hook_node_info().
+ */
+function organization_node_info() {
+  return array(
+    'organization' => array(
+      'name' => t('Organization entry'),
+      'base' => 'organization',
+      'description' => t('Use for multi-user organizations. Every user gets a personal organization.'),
+    )
+  );
+}
+
+/**
+ * Implements hook_user_view().
+ */
+function organization_user_view($account) {
+  if (user_access('create organization content', $account)) {
+    $account->content['summary']['organization'] =  array(
+      '#type' => 'user_profile_item',
+      '#title' => t('Organization'),
+      // l() escapes the attributes, so we should not escape !username here.
+      '#markup' => l(t('View recent organization entries'), "organization/$account->uid", array('attributes' => array('title' => t("Read !username's latest organization entries.", array('!username' => format_username($account)))))),
+      '#attributes' => array('class' => array('organization')),
+    );
+  }
+}
+
+/**
+ * Implements hook_help().
+ */
+function organization_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#organization':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t("The Organization module allows registered users to maintain an online journal, or <em>organization</em>. Organizations are made up of individual <em>organization entries</em>. By default, the organization entries are displayed by creation time in descending order, with comments enabled, and are promoted to the site's front page. For more information, see the online handbook entry for <a href='@organization'>Organization module</a>.", array('@organization' => 'http://drupal.org/handbook/modules/organization/')) . '</p>';
+      $output .= '<h3>' . t('Uses') . '</h3>';
+      $output .= '<dl>';
+      $output .= '<dt>' . t('Single-user organizations') . '</dt>';
+      $output .= '<dd>' . t("Each user's organization entries are automatically displayed with a link to the user's main organization page. You can create as many single-user organizations as you have site users with permission to create organization content.") . '</dd>';
+      $output .= '<dt>' . t('Multi-user organizations') . '</dt>';
+      $output .= '<dd>' . t("Organization entries from each single-user organization are also aggregated into one central multi-user organization, which displays the organization content of all users in a single listing.") . '</dd>';
+      $output .= '<dt>' . t('Navigation') . '</dt>';
+      $output .= '<dd>' . t("There is an optional <em>Organizations</em> menu item added to the Navigation menu, which displays all organizations available on your site, and a <em>My organization</em> item displaying the current user's organization entries.") . '</dd>';
+      $output .= '<dt>' . t('Blocks') . '</dt>';
+      $output .= '<dd>' . t('The Organization module also creates a default <em>Recent organization posts</em> block that may be enabled at the <a href="@blocks">blocks administration page</a>.', array('@blocks' => url('admin/structure/block'))) . '</dd>';
+      $output .= '</dl>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_form().
+ */
+function organization_form($node, $form_state) {
+  return node_content_form($node, $form_state);
+}
+
+/**
+ * Implements hook_view().
+ */
+function organization_view($node, $view_mode) {
+  if ($view_mode == 'full' && node_is_page($node)) {
+    // Breadcrumb navigation.  l() escapes title, so we should not escape !name.
+    drupal_set_breadcrumb(array(l(t('Home'), NULL), l(t('Organizations'), 'organization'), l(t("!name's organization", array('!name' => format_username($node))), 'organization/' . $node->uid)));
+  }
+  return $node;
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function organization_node_view($node, $view_mode) {
+  if ($view_mode != 'rss') {
+    if ($node->type == 'organization' && (arg(0) != 'organization' || arg(1) != $node->uid)) {
+      // This goes to l(), which escapes !username in both title and attributes.
+      $links['organization_usernames_organization'] = array(
+        'title' => t("!username's organization", array('!username' => format_username($node))),
+        'href' => "organization/$node->uid",
+        'attributes' => array('title' => t("Read !username's latest organization entries.", array('!username' => format_username($node)))),
+      );
+      $node->content['links']['organization'] = array(
+        '#theme' => 'links__node__organization',
+        '#links' => $links,
+        '#attributes' => array('class' => array('links', 'inline')),
+      );
+    }
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function organization_menu() {
+  $items['organization'] = array(
+    'title' => 'Organizations',
+    'page callback' => 'organization_page_last',
+    'access arguments' => array('access content'),
+    'type' => MENU_SUGGESTED_ITEM,
+    'file' => 'organization.pages.inc',
+  );
+  $items['organization/%user_uid_optional'] = array(
+    'title' => 'My organization',
+    'page callback' => 'organization_page_user',
+    'page arguments' => array(1),
+    'access callback' => 'organization_page_user_access',
+    'access arguments' => array(1),
+    'file' => 'organization.pages.inc',
+  );
+  $items['organization/%user/feed'] = array(
+    'title' => 'Organizations',
+    'page callback' => 'organization_feed_user',
+    'page arguments' => array(1),
+    'access callback' => 'organization_page_user_access',
+    'access arguments' => array(1),
+    'type' => MENU_CALLBACK,
+    'file' => 'organization.pages.inc',
+  );
+  $items['organization/feed'] = array(
+    'title' => 'Organizations',
+    'page callback' => 'organization_feed_last',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'organization.pages.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function organization_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  global $user;
+
+  // Add action link to 'node/add/organization' on 'organization' page.
+  if ($root_path == 'organization') {
+    $item = menu_get_item('node/add/organization');
+    if ($item['access']) {
+      $item['title'] = t('Create new organization entry');
+      $data['actions']['output'][] = array(
+        '#theme' => 'menu_local_action',
+        '#link' => $item,
+      );
+    }
+  }
+  // Provide a helper action link to the author on the 'organization/%' page.
+  elseif ($root_path == 'organization/%' && $router_item['page_arguments'][0]->uid == $user->uid) {
+    $data['actions']['output']['organization'] = array(
+      '#theme' => 'menu_local_action',
+    );
+    if (user_access('create organization content')) {
+      $data['actions']['output']['organization']['#link']['title'] = t('Post new organization entry.');
+      $data['actions']['output']['organization']['#link']['href'] = 'node/add/organization';
+    }
+    else {
+      $data['actions']['output']['organization']['#link']['title'] = t('You are not allowed to post a new organization entry.');
+    }
+  }
+}
+
+/**
+ * Access callback for user organization pages.
+ */
+function organization_page_user_access($account) {
+  // The visitor must be able to access the site's content.
+  // For a organization to 'exist' the user must either be able to
+  // create new organization entries, or it must have existing posts.
+  return $account->uid && user_access('access content') && (user_access('create organization content', $account) || _organization_post_exists($account));
+}
+
+/**
+ * Helper function to determine if a user has organization posts already.
+ */
+function _organization_post_exists($account) {
+  return (bool)db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->condition('type', 'organization')
+    ->condition('uid', $account->uid)
+    ->condition('status', 1)
+    ->range(0, 1)
+    ->addTag('node_access')
+    ->execute()
+    ->fetchField();
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function organization_block_info() {
+  $block['recent']['info'] = t('Recent organization posts');
+  $block['recent']['properties']['administrative'] = TRUE;
+  return $block;
+}
+
+/**
+ * Implements hook_block_configure().
+ */
+function organization_block_configure($delta = '') {
+  if ($delta == 'recent') {
+    $form['organization_block_count'] = array(
+      '#type' => 'select',
+      '#title' => t('Number of recent organization posts to display'),
+      '#default_value' => variable_get('organization_block_count', 10),
+      '#options' => drupal_map_assoc(array(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 30)),
+    );
+    return $form;
+  }
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function organization_block_save($delta = '', $edit = array()) {
+  if ($delta == 'recent') {
+    variable_set('organization_block_count', $edit['organization_block_count']);
+  }
+}
+
+/**
+ * Implements hook_block_view().
+ *
+ * Displays the most recent 10 organization titles.
+ */
+function organization_block_view($delta = '') {
+  global $user;
+
+  if (user_access('access content')) {
+    $result = db_select('node', 'n')
+      ->fields('n', array('nid', 'title', 'created'))
+      ->condition('type', 'organization')
+      ->condition('status', 1)
+      ->orderBy('created', 'DESC')
+      ->range(0, variable_get('organization_block_count', 10))
+      ->addTag('node_access')
+      ->execute();
+
+    if ($node_title_list = node_title_list($result)) {
+      $block['subject'] = t('Recent organization posts');
+      $block['content']['organization_list'] = $node_title_list;
+      $block['content']['organization_more'] = array(
+        '#theme' => 'more_link',
+        '#url' => 'organization',
+        '#title' => t('Read the latest organization entries.'),
+      );
+
+      return $block;
+    }
+  }
+}
+
+/**
+ * Implements hook_rdf_mapping().
+ */
+function organization_rdf_mapping() {
+  return array(
+    array(
+      'type' => 'node',
+      'bundle' => 'organization',
+      'mapping' => array(
+        'rdftype' => array('sioc:Post', 'sioct:OrganizationPost'),
+      ),
+    ),
+  );
+}

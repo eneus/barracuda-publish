@@ -1,0 +1,213 @@
+<?php
+
+/**
+ * @file
+ * Tests for event.module.
+ */
+
+class EventTestCase extends DrupalWebTestCase {
+  protected $big_user;
+  protected $own_user;
+  protected $any_user;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Event functionality',
+      'description' => 'Create, view, edit, delete, and change event entries and verify its consistency in the database.',
+      'group' => 'Event',
+    );
+  }
+
+  /**
+   * Enable modules and create users with specific permissions.
+   */
+  function setUp() {
+    parent::setUp('event');
+    // Create users.
+    $this->big_user = $this->drupalCreateUser(array('administer blocks'));
+    $this->own_user = $this->drupalCreateUser(array('create event content', 'edit own event content', 'delete own event content'));
+    $this->any_user = $this->drupalCreateUser(array('create event content', 'edit any event content', 'delete any event content', 'access administration pages'));
+  }
+
+  /**
+   * Confirm that the "You are not allowed to post a new event entry." message
+   * shows up if a user submitted event entries, has been denied that
+   * permission, and goes to the event page.
+   */
+  function testUnprivilegedUser() {
+    // Create a event node for a user with no event permissions.
+    $this->drupalCreateNode(array('type' => 'event', 'uid' => $this->big_user->uid));
+
+    $this->drupalLogin($this->big_user);
+
+    $this->drupalGet('event/' . $this->big_user->uid);
+    $this->assertResponse(200);
+    $this->assertTitle(t("@name's event", array('@name' => format_username($this->big_user))) . ' | Drupal', t('Event title was displayed'));
+    $this->assertText(t('You are not allowed to post a new event entry.'), t('No new entries can be posted without the right permission'));
+  }
+
+  /**
+   * View the event of a user with no event entries as another user.
+   */
+  function testEventPageNoEntries() {
+    $this->drupalLogin($this->big_user);
+
+    $this->drupalGet('event/' . $this->own_user->uid);
+    $this->assertResponse(200);
+    $this->assertTitle(t("@name's event", array('@name' => format_username($this->own_user))) . ' | Drupal', t('Event title was displayed'));
+    $this->assertText(t('@author has not created any event entries.', array('@author' => format_username($this->own_user))), t('Users event displayed with no entries'));
+  }
+
+  /**
+   * Login users, create event nodes, and test event functionality through the admin and user interfaces.
+   */
+  function testEvent() {
+    // Login the admin user.
+    $this->drupalLogin($this->big_user);
+    // Enable the recent event block.
+    $edit = array();
+    $edit['blocks[event_recent][region]'] = 'sidebar_second';
+    $this->drupalPost('admin/structure/block', $edit, t('Save blocks'));
+    $this->assertResponse(200);
+    // Verify ability to change number of recent event posts in block.
+    $edit = array();
+    $edit['event_block_count'] = 5;
+    $this->drupalPost('admin/structure/block/manage/event/recent/configure', $edit, t('Save block'));
+    $this->assertEqual(variable_get('event_block_count', 10), 5, t('Number of recent event posts changed.'));
+
+    // Do basic tests for each user.
+    $this->doBasicTests($this->any_user, TRUE);
+    $this->doBasicTests($this->own_user, FALSE);
+
+    // Create another event node for the any event user.
+    $node = $this->drupalCreateNode(array('type' => 'event', 'uid' => $this->any_user->uid));
+    // Verify the own event user only has access to the event view node.
+    $this->verifyEvents($this->any_user, $node, FALSE, 403);
+
+    // Create another event node for the own event user.
+    $node = $this->drupalCreateNode(array('type' => 'event', 'uid' => $this->own_user->uid));
+    // Login the any event user.
+    $this->drupalLogin($this->any_user);
+    // Verify the any event user has access to all the event nodes.
+    $this->verifyEvents($this->own_user, $node, TRUE);
+  }
+
+  /**
+   * Run basic tests on the indicated user.
+   *
+   * @param object $user
+   *   The logged in user.
+   * @param boolean $admin
+   *   User has 'access administration pages' privilege.
+   */
+  private function doBasicTests($user, $admin) {
+    // Login the user.
+    $this->drupalLogin($user);
+    // Create event node.
+    $node = $this->drupalCreateNode(array('type' => 'event'));
+    // Verify the user has access to all the event nodes.
+    $this->verifyEvents($user, $node, $admin);
+    // Create one more node to test the event page with more than one node
+    $this->drupalCreateNode(array('type' => 'event', 'uid' => $user->uid));
+    // Verify the event links are displayed.
+    $this->verifyEventLinks($user);
+  }
+
+  /**
+   * Verify the logged in user has the desired access to the various event nodes.
+   *
+   * @param object $node_user
+   *   The user who creates the node.
+   * @param object $node
+   *   A node object.
+   * @param boolean $admin
+   *   User has 'access administration pages' privilege.
+   * @param integer $response
+   *   HTTP response code.
+   */
+  private function verifyEvents($node_user, $node, $admin, $response = 200) {
+    $response2 = ($admin) ? 200 : 403;
+
+    // View event help node.
+    $this->drupalGet('admin/help/event');
+    $this->assertResponse($response2);
+    if ($response2 == 200) {
+      $this->assertTitle(t('Event | Drupal'), t('Event help node was displayed'));
+      $this->assertText(t('Event'), t('Event help node was displayed'));
+    }
+
+    // Verify the event block was displayed.
+    $this->drupalGet('');
+    $this->assertResponse(200);
+    $this->assertText(t('Recent event posts'), t('Event block was displayed'));
+
+    // View event node.
+    $this->drupalGet('node/' . $node->nid);
+    $this->assertResponse(200);
+    $this->assertTitle($node->title . ' | Drupal', t('Event node was displayed'));
+    $breadcrumb = array(
+      l(t('Home'), NULL),
+      l(t('Events'), 'event'),
+      l(t("!name's event", array('!name' => format_username($node_user))), 'event/' . $node_user->uid),
+    );
+    $this->assertRaw(theme('breadcrumb', array('breadcrumb' => $breadcrumb)), t('Breadcrumbs were displayed'));
+
+    // View event edit node.
+    $this->drupalGet('node/' . $node->nid . '/edit');
+    $this->assertResponse($response);
+    if ($response == 200) {
+      $this->assertTitle('Edit Event entry ' . $node->title . ' | Drupal', t('Event edit node was displayed'));
+    }
+
+    if ($response == 200) {
+      // Edit event node.
+      $edit = array();
+      $langcode = LANGUAGE_NONE;
+      $edit["title"] = 'node/' . $node->nid;
+      $edit["body[$langcode][0][value]"] = $this->randomName(256);
+      $this->drupalPost('node/' . $node->nid . '/edit', $edit, t('Save'));
+      $this->assertRaw(t('Event entry %title has been updated.', array('%title' => $edit["title"])), t('Event node was edited'));
+
+      // Delete event node.
+      $this->drupalPost('node/' . $node->nid . '/delete', array(), t('Delete'));
+      $this->assertResponse($response);
+      $this->assertRaw(t('Event entry %title has been deleted.', array('%title' => $edit["title"])), t('Event node was deleted'));
+    }
+  }
+
+  /**
+   * Verify the event links are displayed to the logged in user.
+   *
+   * @param object $user
+   *   The logged in user.
+   */
+  private function verifyEventLinks($user) {
+    // Confirm event entries link exists on the user page.
+    $this->drupalGet('user/' . $user->uid);
+    $this->assertResponse(200);
+    $this->assertText(t('View recent event entries'), t('View recent event entries link was displayed'));
+
+    // Confirm the recent event entries link goes to the user's event page.
+    $this->clickLink('View recent event entries');
+    $this->assertTitle(t("@name's event | Drupal", array('@name' => format_username($user))), t('View recent event entries link target was correct'));
+
+    // Confirm a event page was displayed.
+    $this->drupalGet('event');
+    $this->assertResponse(200);
+    $this->assertTitle('Events | Drupal', t('Event page was displayed'));
+    $this->assertText(t('Home'), t('Breadcrumbs were displayed'));
+    $this->assertLink(t('Create new event entry'));
+
+    // Confirm a event page was displayed per user.
+    $this->drupalGet('event/' . $user->uid);
+    $this->assertTitle(t("@name's event | Drupal", array('@name' => format_username($user))), t('User event node was displayed'));
+
+    // Confirm a event feed was displayed.
+    $this->drupalGet('event/feed');
+    $this->assertTitle(t('Drupal events'), t('Event feed was displayed'));
+
+    // Confirm a event feed was displayed per user.
+    $this->drupalGet('event/' . $user->uid . '/feed');
+    $this->assertTitle(t("@name's event", array('@name' => format_username($user))), t('User event feed was displayed'));
+  }
+}

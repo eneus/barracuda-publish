@@ -1,0 +1,213 @@
+<?php
+
+/**
+ * @file
+ * Tests for advert.module.
+ */
+
+class AdvertTestCase extends DrupalWebTestCase {
+  protected $big_user;
+  protected $own_user;
+  protected $any_user;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Advert functionality',
+      'description' => 'Create, view, edit, delete, and change advert entries and verify its consistency in the database.',
+      'group' => 'Advert',
+    );
+  }
+
+  /**
+   * Enable modules and create users with specific permissions.
+   */
+  function setUp() {
+    parent::setUp('advert');
+    // Create users.
+    $this->big_user = $this->drupalCreateUser(array('administer blocks'));
+    $this->own_user = $this->drupalCreateUser(array('create advert content', 'edit own advert content', 'delete own advert content'));
+    $this->any_user = $this->drupalCreateUser(array('create advert content', 'edit any advert content', 'delete any advert content', 'access administration pages'));
+  }
+
+  /**
+   * Confirm that the "You are not allowed to post a new advert entry." message
+   * shows up if a user submitted advert entries, has been denied that
+   * permission, and goes to the advert page.
+   */
+  function testUnprivilegedUser() {
+    // Create a advert node for a user with no advert permissions.
+    $this->drupalCreateNode(array('type' => 'advert', 'uid' => $this->big_user->uid));
+
+    $this->drupalLogin($this->big_user);
+
+    $this->drupalGet('advert/' . $this->big_user->uid);
+    $this->assertResponse(200);
+    $this->assertTitle(t("@name's advert", array('@name' => format_username($this->big_user))) . ' | Drupal', t('Advert title was displayed'));
+    $this->assertText(t('You are not allowed to post a new advert entry.'), t('No new entries can be posted without the right permission'));
+  }
+
+  /**
+   * View the advert of a user with no advert entries as another user.
+   */
+  function testAdvertPageNoEntries() {
+    $this->drupalLogin($this->big_user);
+
+    $this->drupalGet('advert/' . $this->own_user->uid);
+    $this->assertResponse(200);
+    $this->assertTitle(t("@name's advert", array('@name' => format_username($this->own_user))) . ' | Drupal', t('Advert title was displayed'));
+    $this->assertText(t('@author has not created any advert entries.', array('@author' => format_username($this->own_user))), t('Users advert displayed with no entries'));
+  }
+
+  /**
+   * Login users, create advert nodes, and test advert functionality through the admin and user interfaces.
+   */
+  function testAdvert() {
+    // Login the admin user.
+    $this->drupalLogin($this->big_user);
+    // Enable the recent advert block.
+    $edit = array();
+    $edit['blocks[advert_recent][region]'] = 'sidebar_second';
+    $this->drupalPost('admin/structure/block', $edit, t('Save blocks'));
+    $this->assertResponse(200);
+    // Verify ability to change number of recent advert posts in block.
+    $edit = array();
+    $edit['advert_block_count'] = 5;
+    $this->drupalPost('admin/structure/block/manage/advert/recent/configure', $edit, t('Save block'));
+    $this->assertEqual(variable_get('advert_block_count', 10), 5, t('Number of recent advert posts changed.'));
+
+    // Do basic tests for each user.
+    $this->doBasicTests($this->any_user, TRUE);
+    $this->doBasicTests($this->own_user, FALSE);
+
+    // Create another advert node for the any advert user.
+    $node = $this->drupalCreateNode(array('type' => 'advert', 'uid' => $this->any_user->uid));
+    // Verify the own advert user only has access to the advert view node.
+    $this->verifyAdverts($this->any_user, $node, FALSE, 403);
+
+    // Create another advert node for the own advert user.
+    $node = $this->drupalCreateNode(array('type' => 'advert', 'uid' => $this->own_user->uid));
+    // Login the any advert user.
+    $this->drupalLogin($this->any_user);
+    // Verify the any advert user has access to all the advert nodes.
+    $this->verifyAdverts($this->own_user, $node, TRUE);
+  }
+
+  /**
+   * Run basic tests on the indicated user.
+   *
+   * @param object $user
+   *   The logged in user.
+   * @param boolean $admin
+   *   User has 'access administration pages' privilege.
+   */
+  private function doBasicTests($user, $admin) {
+    // Login the user.
+    $this->drupalLogin($user);
+    // Create advert node.
+    $node = $this->drupalCreateNode(array('type' => 'advert'));
+    // Verify the user has access to all the advert nodes.
+    $this->verifyAdverts($user, $node, $admin);
+    // Create one more node to test the advert page with more than one node
+    $this->drupalCreateNode(array('type' => 'advert', 'uid' => $user->uid));
+    // Verify the advert links are displayed.
+    $this->verifyAdvertLinks($user);
+  }
+
+  /**
+   * Verify the logged in user has the desired access to the various advert nodes.
+   *
+   * @param object $node_user
+   *   The user who creates the node.
+   * @param object $node
+   *   A node object.
+   * @param boolean $admin
+   *   User has 'access administration pages' privilege.
+   * @param integer $response
+   *   HTTP response code.
+   */
+  private function verifyAdverts($node_user, $node, $admin, $response = 200) {
+    $response2 = ($admin) ? 200 : 403;
+
+    // View advert help node.
+    $this->drupalGet('admin/help/advert');
+    $this->assertResponse($response2);
+    if ($response2 == 200) {
+      $this->assertTitle(t('Advert | Drupal'), t('Advert help node was displayed'));
+      $this->assertText(t('Advert'), t('Advert help node was displayed'));
+    }
+
+    // Verify the advert block was displayed.
+    $this->drupalGet('');
+    $this->assertResponse(200);
+    $this->assertText(t('Recent advert posts'), t('Advert block was displayed'));
+
+    // View advert node.
+    $this->drupalGet('node/' . $node->nid);
+    $this->assertResponse(200);
+    $this->assertTitle($node->title . ' | Drupal', t('Advert node was displayed'));
+    $breadcrumb = array(
+      l(t('Home'), NULL),
+      l(t('Adverts'), 'advert'),
+      l(t("!name's advert", array('!name' => format_username($node_user))), 'advert/' . $node_user->uid),
+    );
+    $this->assertRaw(theme('breadcrumb', array('breadcrumb' => $breadcrumb)), t('Breadcrumbs were displayed'));
+
+    // View advert edit node.
+    $this->drupalGet('node/' . $node->nid . '/edit');
+    $this->assertResponse($response);
+    if ($response == 200) {
+      $this->assertTitle('Edit Advert entry ' . $node->title . ' | Drupal', t('Advert edit node was displayed'));
+    }
+
+    if ($response == 200) {
+      // Edit advert node.
+      $edit = array();
+      $langcode = LANGUAGE_NONE;
+      $edit["title"] = 'node/' . $node->nid;
+      $edit["body[$langcode][0][value]"] = $this->randomName(256);
+      $this->drupalPost('node/' . $node->nid . '/edit', $edit, t('Save'));
+      $this->assertRaw(t('Advert entry %title has been updated.', array('%title' => $edit["title"])), t('Advert node was edited'));
+
+      // Delete advert node.
+      $this->drupalPost('node/' . $node->nid . '/delete', array(), t('Delete'));
+      $this->assertResponse($response);
+      $this->assertRaw(t('Advert entry %title has been deleted.', array('%title' => $edit["title"])), t('Advert node was deleted'));
+    }
+  }
+
+  /**
+   * Verify the advert links are displayed to the logged in user.
+   *
+   * @param object $user
+   *   The logged in user.
+   */
+  private function verifyAdvertLinks($user) {
+    // Confirm advert entries link exists on the user page.
+    $this->drupalGet('user/' . $user->uid);
+    $this->assertResponse(200);
+    $this->assertText(t('View recent advert entries'), t('View recent advert entries link was displayed'));
+
+    // Confirm the recent advert entries link goes to the user's advert page.
+    $this->clickLink('View recent advert entries');
+    $this->assertTitle(t("@name's advert | Drupal", array('@name' => format_username($user))), t('View recent advert entries link target was correct'));
+
+    // Confirm a advert page was displayed.
+    $this->drupalGet('advert');
+    $this->assertResponse(200);
+    $this->assertTitle('Adverts | Drupal', t('Advert page was displayed'));
+    $this->assertText(t('Home'), t('Breadcrumbs were displayed'));
+    $this->assertLink(t('Create new advert entry'));
+
+    // Confirm a advert page was displayed per user.
+    $this->drupalGet('advert/' . $user->uid);
+    $this->assertTitle(t("@name's advert | Drupal", array('@name' => format_username($user))), t('User advert node was displayed'));
+
+    // Confirm a advert feed was displayed.
+    $this->drupalGet('advert/feed');
+    $this->assertTitle(t('Drupal adverts'), t('Advert feed was displayed'));
+
+    // Confirm a advert feed was displayed per user.
+    $this->drupalGet('advert/' . $user->uid . '/feed');
+    $this->assertTitle(t("@name's advert", array('@name' => format_username($user))), t('User advert feed was displayed'));
+  }
+}

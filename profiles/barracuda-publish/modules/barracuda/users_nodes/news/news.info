@@ -1,0 +1,12 @@
+name = News
+description = Enables multi-user news.
+package = User's nodes
+version = 1.x-dev
+core = 7.x
+files[] = news.test
+
+; Information added by drupal.org packaging script on 2012-02-01
+version = "1.x-dev"
+project = "drupal"
+datestamp = "1328134560"
+

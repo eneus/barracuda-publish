@@ -1,0 +1,204 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function organization_contextual_links_menu() {
+	
+	global $node;
+  
+  $items['node/%node/events'] = array(
+    'title' => 'Events',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('organization_contextual_links_node_events_display', 1),
+    'access callback' => 'node_type_access_load',
+	'access arguments' => array('organization', 1),
+    'type' => MENU_LOCAL_TASK,
+    'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
+    'weight' => 80,
+  );
+
+  $items['node/%node/adverts'] = array(
+    'title' => 'Adverts',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('organization_contextual_links_node_adverts_display', 1),
+    'access callback' => 'node_type_access_load',
+	'access arguments' => array('organization', 1),
+    'type' => MENU_LOCAL_TASK,
+    'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
+    'weight' => 80,
+  );
+
+  $items['node/%node/news'] = array(
+    'title' => 'News',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('organization_contextual_links_node_news_display', 1),
+    'access callback' => 'node_type_access_load',
+	'access arguments' => array('organization', 1),
+    'type' => MENU_LOCAL_TASK,
+    'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
+    'weight' => 80,
+  );
+		//'access callback' => 'node_access',
+		//'access arguments' => array('delete', 1),
+  return $items;
+}
+
+function node_type_access_load($node_type, $node) {
+
+	if ($node->type == 'organization') return TRUE;
+	else return FALSE; 
+	
+	//print $node->type != 'page' ? node_get_types('name', $node) : '';
+}
+
+
+/**
+ * Form callback; display the form for performing an example action on a node.
+ * @see organization_contextual_links_node_events_display_submit()
+ */
+function organization_contextual_links_node_events_display($form, &$form_state, $node) {
+
+  $select = db_select('node', 'n')->extend('PagerDefault');
+  $select->innerJoin('field_data_field_organization', 'dfo', 'dfo.entity_id = n.nid');
+    $select->fields('n', array('nid', 'sticky', 'created'));
+    $select->fields('dfo', array('entity_id'))
+    ->condition('field_organization_nid', $node->nid)
+    ->condition('bundle', 'event')
+    ->condition('promote', 1)
+    ->condition('status', 1)
+    ->orderBy('sticky', 'DESC')
+    ->orderBy('created', 'DESC')
+    ->limit(variable_get('default_nodes_main', 10))
+    ->addTag(TRUE);
+
+  $nids = $select->execute()->fetchCol();
+  
+  //$nids = db_query('SELECT n.nid, n.sticky, n.created FROM {node} n INNER JOIN {taxonomy_index} ti ON ti.nid = n.nid WHERE ti.tid = :term', array(':term' => lists_session("termid")))->fetchCol();
+  
+  if (!empty($nids)) {
+
+    //drupal_set_title($node->title);
+
+    $nodes = node_load_multiple($nids);
+    $build = node_view_multiple($nodes);
+
+    // 'rss.xml' is a path, not a file, registered in node_menu().
+    drupal_add_feed('rss.xml', variable_get('site_name', 'Drupal') . ' ' . t('RSS'));
+    $build['pager'] = array(
+      '#theme' => 'pager',
+    );
+    //drupal_set_title('');
+  }
+  else {
+    drupal_set_title($node->title);
+
+    $default_message = '<p>' . t('At this organozation no Events has been created yet .') . '</p>';
+
+    $build['default_message'] = array(
+      '#markup' => $default_message,
+      '#prefix' => '<div id="first-time">',
+      '#suffix' => '</div>',
+    );
+  }
+  
+  return $build;
+}
+
+
+
+function organization_contextual_links_node_news_display($form, &$form_state, $node) {
+
+  $select = db_select('node', 'n')->extend('PagerDefault');
+  $select->innerJoin('field_data_field_organization', 'dfo', 'dfo.entity_id = n.nid');
+    $select->fields('n', array('nid', 'sticky', 'created'));
+    $select->fields('dfo', array('entity_id', 'field_organization_nid'))
+    ->condition('field_organization_nid', $node->nid)
+    ->condition('bundle', 'news')
+    ->condition('promote', 1)
+    ->condition('status', 1)
+    ->orderBy('sticky', 'DESC')
+    ->orderBy('created', 'DESC')
+    ->limit(variable_get('default_nodes_main', 10))
+    ->addTag(TRUE);
+
+  $nids = $select->execute()->fetchCol();
+  
+  //$nids = db_query('SELECT n.nid, n.sticky, n.created FROM {node} n INNER JOIN {taxonomy_index} ti ON ti.nid = n.nid WHERE ti.tid = :term', array(':term' => lists_session("termid")))->fetchCol();
+  
+  if (!empty($nids)) {
+
+    drupal_set_title($node->title);
+
+    $nodes = node_load_multiple($nids);
+    $build = node_view_multiple($nodes);
+
+    // 'rss.xml' is a path, not a file, registered in node_menu().
+    drupal_add_feed('rss.xml', variable_get('site_name', 'Drupal') . ' ' . t('RSS'));
+    $build['pager'] = array(
+      '#theme' => 'pager',
+    );
+    //drupal_set_title('');
+  }
+  else {
+    drupal_set_title($node->title);
+
+    $default_message = '<p>' . t('At this organozation no News has been created yet .') . '</p>';
+
+    $build['default_message'] = array(
+      '#markup' => $default_message,
+      '#prefix' => '<div id="first-time">',
+      '#suffix' => '</div>',
+    );
+  }
+  
+  return $build;
+}
+
+function organization_contextual_links_node_adverts_display($form, &$form_state, $node) {
+
+  $select = db_select('node', 'n')->extend('PagerDefault');
+  $select->innerJoin('field_data_field_organization', 'dfo', 'dfo.entity_id = n.nid');
+    $select->fields('n', array('nid', 'sticky', 'created'));
+    $select->fields('dfo', array('entity_id', 'field_organization_nid'))
+    ->condition('field_organization_nid', $node->nid)
+    ->condition('bundle', 'advert')
+    ->condition('promote', 1)
+    ->condition('status', 1)
+    ->orderBy('sticky', 'DESC')
+    ->orderBy('created', 'DESC')
+    ->limit(variable_get('default_nodes_main', 10))
+    ->addTag(TRUE);
+
+  $nids = $select->execute()->fetchCol();
+  
+  //$nids = db_query('SELECT n.nid, n.sticky, n.created FROM {node} n INNER JOIN {taxonomy_index} ti ON ti.nid = n.nid WHERE ti.tid = :term', array(':term' => lists_session("termid")))->fetchCol();
+  
+  if (!empty($nids)) {
+
+    drupal_set_title($node->title);
+
+    $nodes = node_load_multiple($nids);
+    $build = node_view_multiple($nodes);
+
+    // 'rss.xml' is a path, not a file, registered in node_menu().
+    drupal_add_feed('rss.xml', variable_get('site_name', 'Drupal') . ' ' . t('RSS'));
+    $build['pager'] = array(
+      '#theme' => 'pager',
+    );
+    //drupal_set_title('');
+  }
+  else {
+    drupal_set_title($node->title);
+
+    $default_message = '<p>' . t('At this organozation no Advert has been created yet .') . '</p>';
+
+    $build['default_message'] = array(
+      '#markup' => $default_message,
+      '#prefix' => '<div id="first-time">',
+      '#suffix' => '</div>',
+    );
+  }
+  
+  return $build;
+}

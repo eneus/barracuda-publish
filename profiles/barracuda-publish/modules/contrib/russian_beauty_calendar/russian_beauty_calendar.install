@@ -1,0 +1,18 @@
+<?php
+
+// hook_install()
+function russian_beauty_calendar_install() {
+	variable_set('russian_beauty_calendar_theme', 'standard');
+	variable_set('russian_beauty_calendar_node_type', '');
+	variable_set('russian_beauty_calendar_field_date', '');
+	variable_set('russian_beauty_calendar_title_words', 'story,stories');
+	variable_set('russian_beauty_calendar_node_per_page', '20');
+	variable_set('russian_beauty_calendar_preload_tooltips', '-');
+	variable_set('russian_beauty_calendar_tooltip_count', '5');
+}
+
+// hook_uninstall()
+function russian_beauty_calendar_uninstall() {
+	db_query("DELETE FROM {variable} WHERE name LIKE 'russian_beauty_calendar_%'");
+	cache_clear_all('variables', 'cache');
+}
