@@ -27,6 +27,7 @@ div.panels-ipe-handlebar-wrapper {
 .panels-ipe-editing div.panels-ipe-portlet-wrapper {
   margin-top: 1em;
   border: 1px solid #CCC;
+  width: 100%;
 }
 
 /* Hide empty panes when not editing them. */
@@ -74,6 +75,7 @@ div.panels-ipe-handlebar-wrapper ul {
 div.panels-ipe-handlebar-wrapper li {
   background: none;
   list-style-type: none;
+  list-style-image: none;
   margin: 0 .5em 0 0;
   padding: 0;
   float: left;
@@ -154,12 +156,16 @@ div.panels-ipe-newblock {
   -moz-box-shadow: 0px 0 5px 5px #ECFAFF;
   box-shadow: 0px 0 5px 5px #ECFAFF;
   position: absolute;
-  left: 50%;
+  right: 10px;
   top: 50%;
   margin-top: -18px; /* some initial guesses to help center the add button
     panels_ipe.js will evaluate the width and get this pixel-perfect */
   margin-left: -30px;
   z-index: 99;
+}
+
+div.panels-ipe-newblock li {
+  padding: 0;
 }
 
 div.panels-ipe-handlebar-wrapper li a,
@@ -168,7 +174,7 @@ div.panels-ipe-newblock a,
 span.panels-ipe-draghandle-icon {
   display: inline-block;
   border: 1px solid #ccc;
-	padding: 0 13px 1px;
+	padding: 0 8px 1px;
 	font: bold 12px/32px 'Open Sans', 'Lucida Sans', 'Lucida Grande', verdana sans-serif;
 	text-decoration: none;
 	height: 33px;
@@ -199,11 +205,8 @@ span.panels-ipe-draghandle-icon {
   box-shadow: 0px 3px 3px 0px #d2d2d2;
 }
 
-div.panels-ipe-handlebar-wrapper li a {
-  padding: 0 8px  1px;
-}
-
-div.panels-ipe-handlebar-wrapper li a span {
+div.panels-ipe-handlebar-wrapper li a span,
+div.panels-ipe-newblock a span {
   display: block;
   height: 32px;
   width: 18px;
@@ -211,15 +214,23 @@ div.panels-ipe-handlebar-wrapper li a span {
   background-repeat: no-repeat;
   text-align: left;
   text-indent: -9999em;
-  overflow: hidden;
 }
 
 div.panels-ipe-handlebar-wrapper li.edit a span {
   background-image: url(../images/icon-settings.png);
 }
 
-div.panels-ipe-handlebar-wrapper li.style a span {
+div.panels-ipe-handlebar-wrapper li.style a span,
+div.panels-ipe-newblock a.style span {
   background-image: url(../images/icon-style.png);
+}
+
+div.panels-ipe-newblock a.style {
+  margin-right: .5em;
+}
+
+div.panels-ipe-newblock a.add span {
+  background-image: url(../images/icon-add.png);
 }
 
 div.panels-ipe-handlebar-wrapper li.delete a span {
@@ -230,7 +241,9 @@ div.panels-ipe-handlebar-wrapper li.delete a span {
 div.panels-ipe-handlebar-wrapper li a:hover,
 div.panels-ipe-dragtitle span:hover,
 div.panels-ipe-newblock a:hover,
-span.panels-ipe-draghandle-icon:hover {
+span.panels-ipe-draghandle-icon:hover,
+div.panels-ipe-handlebar-wrapper li a:focus,
+div.panels-ipe-newblock a:focus {
   background: #E6E6E6;
   background-image: linear-gradient(bottom, #C5C5C5 0%, #FAFAFA 100%);
   background-image: -o-linear-gradient(bottom, #C5C5C5 0%, #FAFAFA 100%);
@@ -369,9 +382,10 @@ div.panels-ipe-control .form-submit {
   padding: 0 0.8em 2px 34px;
 }
 
-input#panels-ipe-save, input#panels-ipe-cancel,
-input#panels-ipe-save:hover, input#panels-ipe-cancel:hover,
-input#panels-ipe-save:active, input#panels-ipe-cancel:active {
+div.panels-ipe-control input.panels-ipe-save, div.panels-ipe-control input.panels-ipe-cancel,
+div.panels-ipe-control input.panels-ipe-save:hover, div.panels-ipe-control input.panels-ipe-cancel:hover,
+div.panels-ipe-control input.panels-ipe-save:focus, div.panels-ipe-control input.panels-ipe-cancel:focus,
+div.panels-ipe-control input.panels-ipe-save:active, div.panels-ipe-control input.panels-ipe-cancel:active {
   background-repeat: no-repeat;
 }
 
@@ -383,7 +397,7 @@ div.panels-ipe-pseudobutton-container a {
   text-decoration: none;
 }
 
-input#panels-ipe-save {
+div.panels-ipe-control input.panels-ipe-save {
   background-image: url(../images/icon-save.png);
   background-image: url(../images/icon-save.png), linear-gradient(bottom, #383838 0%, #666666 100%);
   background-image: url(../images/icon-save.png), -o-linear-gradient(bottom, #383838 0%, #666666 100%);
@@ -400,7 +414,7 @@ input#panels-ipe-save {
   );
 }
 
-input#panels-ipe-cancel {
+div.panels-ipe-control input.panels-ipe-cancel {
   background-image: url(../images/icon-close.png);
   background-image: url(../images/icon-close.png), linear-gradient(bottom, #383838 0%, #666666 100%);
   background-image: url(../images/icon-close.png), -o-linear-gradient(bottom, #383838 0%, #666666 100%);
@@ -418,7 +432,9 @@ input#panels-ipe-cancel {
 }
 
 div.panels-ipe-pseudobutton-container:hover,
-div.panels-ipe-control .form-submit:hover {
+div.panels-ipe-control .form-submit:hover,
+div.panels-ipe-pseudobutton-container:focus,
+div.panels-ipe-control .form-submit:focus {
   background: #999999;
   background-image: linear-gradient(bottom, #3D3D3D 0%, #999999 100%);
   background-image: -o-linear-gradient(bottom, #3D3D3D 0%, #999999 100%);
@@ -436,11 +452,13 @@ div.panels-ipe-control .form-submit:hover {
   color: #FFF;
 }
 
-div.panels-ipe-pseudobutton-container a:hover {
+div.panels-ipe-pseudobutton-container a:hover,
+div.panels-ipe-pseudobutton-container a:focus {
   color: #FFF;
 }
 
-input#panels-ipe-cancel:hover {
+div.panels-ipe-control input.panels-ipe-cancel:hover,
+div.panels-ipe-control input.panels-ipe-cancel:focus {
   background-image: url(../images/icon-close.png), linear-gradient(bottom, #3D3D3D 0%, #999999 100%);
   background-image: url(../images/icon-close.png), -o-linear-gradient(bottom, #3D3D3D 0%, #999999 100%);
   background-image: url(../images/icon-close.png), -moz-linear-gradient(bottom, #3D3D3D 0%, #999999 100%);
@@ -456,7 +474,8 @@ input#panels-ipe-cancel:hover {
   );
 }
 
-input#panels-ipe-save:hover {
+div.panels-ipe-control input.panels-ipe-save:hover,
+div.panels-ipe-control input.panels-ipe-save:focus {
   background-image: url(../images/icon-save.png), linear-gradient(bottom, #3D3D3D 0%, #999999 100%);
   background-image: url(../images/icon-save.png), -o-linear-gradient(bottom, #3D3D3D 0%, #999999 100%);
   background-image: url(../images/icon-save.png), -moz-linear-gradient(bottom, #3D3D3D 0%, #999999 100%);
@@ -496,7 +515,7 @@ div.panels-ipe-pseudobutton-container a:active {
   color: #CCC;
 }
 
-input#panels-ipe-cancel:active {
+div.panels-ipe-control input.panels-ipe-cancel:active {
   background-image: url(../images/icon-close.png), linear-gradient(bottom, #616161 0%, #333333 100%);
   background-image: url(../images/icon-close.png), -o-linear-gradient(bottom, #616161 0%, #333333 100%);
   background-image: url(../images/icon-close.png), -moz-linear-gradient(bottom, #616161 0%, #333333 100%);
@@ -512,7 +531,7 @@ input#panels-ipe-cancel:active {
   );
 }
 
-input#panels-ipe-save:active {
+div.panels-ipe-control input.panels-ipe-save:active {
   background-image: url(../images/icon-save.png), linear-gradient(bottom, #616161 0%, #333333 100%);
   background-image: url(../images/icon-save.png), -o-linear-gradient(bottom, #616161 0%, #333333 100%);
   background-image: url(../images/icon-save.png), -moz-linear-gradient(bottom, #616161 0%, #333333 100%);
