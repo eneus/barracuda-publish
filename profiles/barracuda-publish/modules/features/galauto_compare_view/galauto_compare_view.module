@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the galauto_compare_view feature.
+ */
+
+include_once 'galauto_compare_view.features.inc';
