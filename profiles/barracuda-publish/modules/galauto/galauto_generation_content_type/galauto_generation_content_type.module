@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Galauto_generation_content_type feature.
- */
-
-include_once 'galauto_generation_content_type.features.inc';

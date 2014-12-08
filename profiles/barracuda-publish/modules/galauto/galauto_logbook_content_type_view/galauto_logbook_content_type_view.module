@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Galauto_logbook_content_type_view feature.
- */
-
-include_once 'galauto_logbook_content_type_view.features.inc';
