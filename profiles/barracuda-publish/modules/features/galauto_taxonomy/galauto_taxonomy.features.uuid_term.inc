@@ -147,6 +147,14 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'vocabulary_machine_name' => 'auto_created_voc2_956',
   );
   $terms[] = array(
+    'name' => 'Torsion bar',
+    'description' => '',
+    'format' => 'filtered_html',
+    'weight' => 3,
+    'uuid' => '16487aa0-39bf-44f3-b445-d23415d91d5e',
+    'vocabulary_machine_name' => 'front_suspension',
+  );
+  $terms[] = array(
     'name' => 'ТагАЗ',
     'description' => '',
     'format' => 'plain_text',
@@ -382,7 +390,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'Swing axle',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 3,
+    'weight' => 6,
     'uuid' => '35d08eb9-9d22-4d9a-a3f9-0ee3bd2b1bc3',
     'vocabulary_machine_name' => 'front_suspension',
   );
@@ -699,6 +707,14 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'vocabulary_machine_name' => 'auto_created_voc2_956',
   );
   $terms[] = array(
+    'name' => 'Hydropneumatic',
+    'description' => '',
+    'format' => 'filtered_html',
+    'weight' => 1,
+    'uuid' => '620cfe35-8818-43bc-9bc5-a7c017a0aa8e',
+    'vocabulary_machine_name' => 'front_suspension',
+  );
+  $terms[] = array(
     'name' => '4x4',
     'description' => '',
     'format' => 'filtered_html',
@@ -779,10 +795,10 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'vocabulary_machine_name' => 'cars_body_type',
   );
   $terms[] = array(
-    'name' => 'Trailing link suspension',
+    'name' => 'Trailing link',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 4,
+    'weight' => 7,
     'uuid' => '73cb2aba-f939-4dc7-a506-eeaafb6191e2',
     'vocabulary_machine_name' => 'front_suspension',
   );
@@ -923,6 +939,14 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'vocabulary_machine_name' => 'gearbox_types',
   );
   $terms[] = array(
+    'name' => 'Multilink',
+    'description' => '',
+    'format' => 'filtered_html',
+    'weight' => 2,
+    'uuid' => '88f4d301-6653-4119-9f20-5ced9ce54d59',
+    'vocabulary_machine_name' => 'front_suspension',
+  );
+  $terms[] = array(
     'name' => 'Mahindra',
     'description' => '',
     'format' => 'plain_text',
@@ -1030,7 +1054,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'MacPherson',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 1,
+    'weight' => 4,
     'uuid' => '977e5917-a318-498e-a7a9-d60f3fbea367',
     'vocabulary_machine_name' => 'front_suspension',
   );
@@ -1404,7 +1428,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'Solid beam axle',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 2,
+    'weight' => 5,
     'uuid' => 'c9fe24e6-7b6e-49a2-a371-15fc8919f712',
     'vocabulary_machine_name' => 'front_suspension',
   );
@@ -1508,7 +1532,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'Unequal length double A-arm',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 5,
+    'weight' => 8,
     'uuid' => 'ddfeeeba-6124-41bf-a995-cda583d0af02',
     'vocabulary_machine_name' => 'front_suspension',
   );

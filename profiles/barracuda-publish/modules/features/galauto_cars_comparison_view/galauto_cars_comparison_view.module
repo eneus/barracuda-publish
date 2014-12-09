@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Galauto Cars Comparison View feature.
+ */
+
+include_once 'galauto_cars_comparison_view.features.inc';
