@@ -9,14 +9,6 @@
  */
 function galauto_taxonomy_taxonomy_default_vocabularies() {
   return array(
-    'auto_created_voc2_956' => array(
-      'name' => 'Brands',
-      'machine_name' => 'auto_created_voc2_956',
-      'description' => 'Vocabulary created automatically by Taxonomy csv import/export module',
-      'hierarchy' => 1,
-      'module' => 'taxonomy',
-      'weight' => 0,
-    ),
     'brake_system' => array(
       'name' => 'Brake system',
       'machine_name' => 'brake_system',
@@ -53,7 +45,7 @@ function galauto_taxonomy_taxonomy_default_vocabularies() {
       'name' => 'Engine type',
       'machine_name' => 'engine_type',
       'description' => '',
-      'hierarchy' => 0,
+      'hierarchy' => 1,
       'module' => 'taxonomy',
       'weight' => 0,
     ),
@@ -92,14 +84,6 @@ function galauto_taxonomy_taxonomy_default_vocabularies() {
     'number_of_valves_per_cylinder' => array(
       'name' => 'Number of valves per cylinder',
       'machine_name' => 'number_of_valves_per_cylinder',
-      'description' => '',
-      'hierarchy' => 0,
-      'module' => 'taxonomy',
-      'weight' => 0,
-    ),
-    'petrol_types' => array(
-      'name' => 'Petrol types',
-      'machine_name' => 'petrol_types',
       'description' => '',
       'hierarchy' => 0,
       'module' => 'taxonomy',
