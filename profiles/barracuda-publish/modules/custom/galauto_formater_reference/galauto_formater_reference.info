@@ -1,0 +1,11 @@
+name = Galauto formater reference
+description = Formater reference for cars.
+package = Galauto
+core = 7.x
+
+; Information added by Drupal.org packaging script on 2014-10-03
+version = "7.x-2.x-dev"
+core = "7.x"
+project = "examples"
+datestamp = "1412378934"
+
