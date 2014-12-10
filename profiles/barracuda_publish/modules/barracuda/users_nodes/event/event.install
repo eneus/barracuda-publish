@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the event module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function event_install() {
+  // Ensure the event node type is available.
+  node_types_rebuild();
+  $types = node_type_get_types();
+  node_add_body_field($types['event']);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function event_uninstall() {
+  variable_del('event_block_count');
+}

@@ -1,0 +1,213 @@
+<?php
+
+/**
+ * @file
+ * Tests for organization.module.
+ */
+
+class OrganizationTestCase extends DrupalWebTestCase {
+  protected $big_user;
+  protected $own_user;
+  protected $any_user;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Organization functionality',
+      'description' => 'Create, view, edit, delete, and change organization entries and verify its consistency in the database.',
+      'group' => 'Organization',
+    );
+  }
+
+  /**
+   * Enable modules and create users with specific permissions.
+   */
+  function setUp() {
+    parent::setUp('organization');
+    // Create users.
+    $this->big_user = $this->drupalCreateUser(array('administer blocks'));
+    $this->own_user = $this->drupalCreateUser(array('create organization content', 'edit own organization content', 'delete own organization content'));
+    $this->any_user = $this->drupalCreateUser(array('create organization content', 'edit any organization content', 'delete any organization content', 'access administration pages'));
+  }
+
+  /**
+   * Confirm that the "You are not allowed to post a new organization entry." message
+   * shows up if a user submitted organization entries, has been denied that
+   * permission, and goes to the organization page.
+   */
+  function testUnprivilegedUser() {
+    // Create a organization node for a user with no organization permissions.
+    $this->drupalCreateNode(array('type' => 'organization', 'uid' => $this->big_user->uid));
+
+    $this->drupalLogin($this->big_user);
+
+    $this->drupalGet('organization/' . $this->big_user->uid);
+    $this->assertResponse(200);
+    $this->assertTitle(t("@name's organization", array('@name' => format_username($this->big_user))) . ' | Drupal', t('Organization title was displayed'));
+    $this->assertText(t('You are not allowed to post a new organization entry.'), t('No new entries can be posted without the right permission'));
+  }
+
+  /**
+   * View the organization of a user with no organization entries as another user.
+   */
+  function testOrganizationPageNoEntries() {
+    $this->drupalLogin($this->big_user);
+
+    $this->drupalGet('organization/' . $this->own_user->uid);
+    $this->assertResponse(200);
+    $this->assertTitle(t("@name's organization", array('@name' => format_username($this->own_user))) . ' | Drupal', t('Organization title was displayed'));
+    $this->assertText(t('@author has not created any organization entries.', array('@author' => format_username($this->own_user))), t('Users organization displayed with no entries'));
+  }
+
+  /**
+   * Login users, create organization nodes, and test organization functionality through the admin and user interfaces.
+   */
+  function testOrganization() {
+    // Login the admin user.
+    $this->drupalLogin($this->big_user);
+    // Enable the recent organization block.
+    $edit = array();
+    $edit['blocks[organization_recent][region]'] = 'sidebar_second';
+    $this->drupalPost('admin/structure/block', $edit, t('Save blocks'));
+    $this->assertResponse(200);
+    // Verify ability to change number of recent organization posts in block.
+    $edit = array();
+    $edit['organization_block_count'] = 5;
+    $this->drupalPost('admin/structure/block/manage/organization/recent/configure', $edit, t('Save block'));
+    $this->assertEqual(variable_get('organization_block_count', 10), 5, t('Number of recent organization posts changed.'));
+
+    // Do basic tests for each user.
+    $this->doBasicTests($this->any_user, TRUE);
+    $this->doBasicTests($this->own_user, FALSE);
+
+    // Create another organization node for the any organization user.
+    $node = $this->drupalCreateNode(array('type' => 'organization', 'uid' => $this->any_user->uid));
+    // Verify the own organization user only has access to the organization view node.
+    $this->verifyOrganizations($this->any_user, $node, FALSE, 403);
+
+    // Create another organization node for the own organization user.
+    $node = $this->drupalCreateNode(array('type' => 'organization', 'uid' => $this->own_user->uid));
+    // Login the any organization user.
+    $this->drupalLogin($this->any_user);
+    // Verify the any organization user has access to all the organization nodes.
+    $this->verifyOrganizations($this->own_user, $node, TRUE);
+  }
+
+  /**
+   * Run basic tests on the indicated user.
+   *
+   * @param object $user
+   *   The logged in user.
+   * @param boolean $admin
+   *   User has 'access administration pages' privilege.
+   */
+  private function doBasicTests($user, $admin) {
+    // Login the user.
+    $this->drupalLogin($user);
+    // Create organization node.
+    $node = $this->drupalCreateNode(array('type' => 'organization'));
+    // Verify the user has access to all the organization nodes.
+    $this->verifyOrganizations($user, $node, $admin);
+    // Create one more node to test the organization page with more than one node
+    $this->drupalCreateNode(array('type' => 'organization', 'uid' => $user->uid));
+    // Verify the organization links are displayed.
+    $this->verifyOrganizationLinks($user);
+  }
+
+  /**
+   * Verify the logged in user has the desired access to the various organization nodes.
+   *
+   * @param object $node_user
+   *   The user who creates the node.
+   * @param object $node
+   *   A node object.
+   * @param boolean $admin
+   *   User has 'access administration pages' privilege.
+   * @param integer $response
+   *   HTTP response code.
+   */
+  private function verifyOrganizations($node_user, $node, $admin, $response = 200) {
+    $response2 = ($admin) ? 200 : 403;
+
+    // View organization help node.
+    $this->drupalGet('admin/help/organization');
+    $this->assertResponse($response2);
+    if ($response2 == 200) {
+      $this->assertTitle(t('Organization | Drupal'), t('Organization help node was displayed'));
+      $this->assertText(t('Organization'), t('Organization help node was displayed'));
+    }
+
+    // Verify the organization block was displayed.
+    $this->drupalGet('');
+    $this->assertResponse(200);
+    $this->assertText(t('Recent organization posts'), t('Organization block was displayed'));
+
+    // View organization node.
+    $this->drupalGet('node/' . $node->nid);
+    $this->assertResponse(200);
+    $this->assertTitle($node->title . ' | Drupal', t('Organization node was displayed'));
+    $breadcrumb = array(
+      l(t('Home'), NULL),
+      l(t('Organizations'), 'organization'),
+      l(t("!name's organization", array('!name' => format_username($node_user))), 'organization/' . $node_user->uid),
+    );
+    $this->assertRaw(theme('breadcrumb', array('breadcrumb' => $breadcrumb)), t('Breadcrumbs were displayed'));
+
+    // View organization edit node.
+    $this->drupalGet('node/' . $node->nid . '/edit');
+    $this->assertResponse($response);
+    if ($response == 200) {
+      $this->assertTitle('Edit Organization entry ' . $node->title . ' | Drupal', t('Organization edit node was displayed'));
+    }
+
+    if ($response == 200) {
+      // Edit organization node.
+      $edit = array();
+      $langcode = LANGUAGE_NONE;
+      $edit["title"] = 'node/' . $node->nid;
+      $edit["body[$langcode][0][value]"] = $this->randomName(256);
+      $this->drupalPost('node/' . $node->nid . '/edit', $edit, t('Save'));
+      $this->assertRaw(t('Organization entry %title has been updated.', array('%title' => $edit["title"])), t('Organization node was edited'));
+
+      // Delete organization node.
+      $this->drupalPost('node/' . $node->nid . '/delete', array(), t('Delete'));
+      $this->assertResponse($response);
+      $this->assertRaw(t('Organization entry %title has been deleted.', array('%title' => $edit["title"])), t('Organization node was deleted'));
+    }
+  }
+
+  /**
+   * Verify the organization links are displayed to the logged in user.
+   *
+   * @param object $user
+   *   The logged in user.
+   */
+  private function verifyOrganizationLinks($user) {
+    // Confirm organization entries link exists on the user page.
+    $this->drupalGet('user/' . $user->uid);
+    $this->assertResponse(200);
+    $this->assertText(t('View recent organization entries'), t('View recent organization entries link was displayed'));
+
+    // Confirm the recent organization entries link goes to the user's organization page.
+    $this->clickLink('View recent organization entries');
+    $this->assertTitle(t("@name's organization | Drupal", array('@name' => format_username($user))), t('View recent organization entries link target was correct'));
+
+    // Confirm a organization page was displayed.
+    $this->drupalGet('organization');
+    $this->assertResponse(200);
+    $this->assertTitle('Organizations | Drupal', t('Organization page was displayed'));
+    $this->assertText(t('Home'), t('Breadcrumbs were displayed'));
+    $this->assertLink(t('Create new organization entry'));
+
+    // Confirm a organization page was displayed per user.
+    $this->drupalGet('organization/' . $user->uid);
+    $this->assertTitle(t("@name's organization | Drupal", array('@name' => format_username($user))), t('User organization node was displayed'));
+
+    // Confirm a organization feed was displayed.
+    $this->drupalGet('organization/feed');
+    $this->assertTitle(t('Drupal organizations'), t('Organization feed was displayed'));
+
+    // Confirm a organization feed was displayed per user.
+    $this->drupalGet('organization/' . $user->uid . '/feed');
+    $this->assertTitle(t("@name's organization", array('@name' => format_username($user))), t('User organization feed was displayed'));
+  }
+}

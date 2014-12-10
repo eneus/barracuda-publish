@@ -1,0 +1,14 @@
+name = Galauto Cars Comparison View
+description = Table for displaying cars comparison
+core = 7.x
+package = Galauto
+dependencies[] = flag
+dependencies[] = flag
+dependencies[] = galauto_complectation_content_type
+dependencies[] = views
+dependencies[] = views_flipped_table
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[flag][] = cars_comparison
+features[views_view][] = compare_list
+features_exclude[dependencies][ctools] = ctools

@@ -1,0 +1,54 @@
+/* calendar styles */
+.block-calendar { background:transparent url("background.png") no-repeat top center; padding:15px; min-height:130px; width:168px; }
+*html .block-calendar { background-image:url("background.gif"); } /*IE6 hack */
+.block-calendar  *, #tiptip_holder  * { font-family:calibri,arial,sans!important; color:black; font-size:12px!important; }
+.calendar-container { width:168px; height:130px; }
+#calendar-body { width:168px; height:98px; clear:both; float:left; position:relative; }
+.rbc_week { float:left; width:168px; clear:both; }
+.rbc_week .rbc_value { cursor:default; }
+.rbc_week .rbc_value { color:#999; }
+.rbc_day, .rbc_weekend { float:left; clear:none; }
+
+.rbc_month { clear:both; float:none; width:168px; position:absolute; margin-top:-35px; left:0; top:0; }
+.rbc_month .month-title { float:left; width:138px; overflow:hidden; text-align:center; font-weight:bold; }
+.rbc_month a .rbc_value { cursor:pointer; color:#000; font-weight:bold; }
+.rbc_month .calendar-prev, .rbc_month .calendar-next { background:transparent url("arrows.gif") no-repeat 4px 0; height:12px; width:10px; cursor:pointer; }
+.rbc_month .calendar-prev { margin-left:5px; float:left; }
+.rbc_month a:hover .calendar-prev { text-decoration:none; background:url("arrows.gif") no-repeat 4px -12px; }
+.rbc_month .calendar-next { margin-right:5px; float:right; background:url("arrows.gif") no-repeat 0px -24px; }
+.rbc_month a:hover .calendar-next { text-decoration:none; background:url("arrows.gif") no-repeat 0px -36px; }
+
+.rbc_daynames .rbc_value { text-transform:capitalize; margin-top:16px; text-align:right; text-align:center; font-weight:normal; float:left; display:block; width:24px; padding-bottom:1px; border-bottom:1px solid #f5f5f5; }
+#calendar-body  .rbc_value { height:15px; width:20px; padding:0px 4px 0 0; margin:1px 0 0; float:left; display:block; text-align:right; }
+.rbc_week a div { background:url("day.gif") no-repeat 0 -45px; }
+.rbc_week a:hover div { background:url("day.gif") no-repeat 0 0; color:#06C; }
+.rbc_week .rbc_today div { background:url("day.gif") no-repeat 0 -15px; color:#06C; }
+.rbc_week .rbc_today div:hover { background:url("day.gif") no-repeat 0 -30px; color:#000; }
+
+/* calendar loader styles */
+.calendar_loader { width:0px; height:0px; position:relative; clear:both; left:78px; top:83px; }
+.calendar_loader div { background:url("ajax-loader.gif") no-repeat; width:16px; height:11px;}
+
+/* tooltip styles */
+#tiptip_holder { display:none; position:absolute; top:0; left:0; z-index:99999; }
+#tiptip_holder.tip_top { padding-bottom:5px; }
+#tiptip_holder.tip_bottom { padding-top:5px; }
+#tiptip_holder.tip_right { padding-left:5px; }
+#tiptip_holder.tip_left { padding-right:5px; }
+#tiptip_content { font-size:11px; color:#333; text-shadow:0 0 1px #FFF; padding:4px 8px; border:1px solid rgba(0,0,0,0.25); background-color:rgb(215,220,225); border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px; box-shadow:0 0 3px #999; -webkit-box-shadow:0 0 3px #999; -moz-box-shadow:0 0 3px #999; }
+#tiptip_arrow, #tiptip_arrow_inner { position:absolute; border-color:transparent; border-style:solid; border-width:6px; height:0; width:0; }
+#tiptip_holder.tip_top #tiptip_arrow { border-top-color:#fff; border-top-color:rgba(255,255,255,0.35); }
+#tiptip_holder.tip_bottom #tiptip_arrow { border-bottom-color:#fff; border-bottom-color:rgba(255,255,255,0.35); }
+#tiptip_holder.tip_right #tiptip_arrow { border-right-color:#fff; border-right-color:rgba(255,255,255,0.35); }
+#tiptip_holder.tip_left #tiptip_arrow { border-left-color:#fff; border-left-color:rgba(255,255,255,0.35); }
+#tiptip_holder.tip_top #tiptip_arrow_inner { margin-top:-7px; margin-left:-6px; border-top-color:rgb(215,220,225); }
+#tiptip_holder.tip_bottom #tiptip_arrow_inner { margin-top:-5px; margin-left:-6px; border-bottom-color:rgb(215,220,225); }
+#tiptip_holder.tip_right #tiptip_arrow_inner { margin-top:-6px; margin-left:-5px; border-right-color:rgb(215,220,225); }
+#tiptip_holder.tip_left #tiptip_arrow_inner { margin-top:-6px; margin-left:-7px; border-left-color:rgb(215,220,225); }
+#tiptip_content ul{ list-style:none; padding:5px 10px; margin:0; font-size:11px; }
+#tiptip_content a { text-decoration:underline; }
+#tiptip_content .tooltip_summary { text-align:right; padding:0; }
+
+/* tooltip loader styles */
+.tooltip_loader { width:16px; height:11px; padding:8px 16px; }
+.tooltip_loader div { background:url("ajax-loader.gif") no-repeat; width:16px; height:11px;}
