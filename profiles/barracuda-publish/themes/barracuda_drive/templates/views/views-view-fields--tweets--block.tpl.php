@@ -1,1 +1,0 @@
-<?php print $fields['text']->content; ?> <span><?php print $fields['created_time']->content; ?></span>
