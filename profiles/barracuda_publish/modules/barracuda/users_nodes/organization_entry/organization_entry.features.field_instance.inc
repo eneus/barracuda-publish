@@ -168,54 +168,10 @@ function organization_entry_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(
-          'trim_length' => 600,
-        ),
-        'type' => 'text_summary_or_trimmed',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'body',
-    'label' => 'Body',
-    'required' => FALSE,
-    'settings' => array(
-      'display_summary' => TRUE,
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 20,
-        'summary_rows' => 5,
-      ),
-      'type' => 'text_textarea_with_summary',
-      'weight' => -4,
-    ),
-  );
-
-  // Exported field_instance: 'node-organization-field_organization_about_company'
-  $field_instances['node-organization-field_organization_about_company'] = array(
-    'bundle' => 'organization',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
         'label' => 'above',
         'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'text_plain',
         'weight' => 6,
       ),
       'teaser' => array(
@@ -226,10 +182,11 @@ function organization_entry_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_organization_about_company',
+    'field_name' => 'body',
     'label' => 'About company',
     'required' => 0,
     'settings' => array(
+      'display_summary' => 0,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -237,10 +194,11 @@ function organization_entry_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 8,
+        'rows' => 20,
+        'summary_rows' => 5,
       ),
-      'type' => 'text_textarea',
-      'weight' => 8,
+      'type' => 'text_textarea_with_summary',
+      'weight' => 6,
     ),
   );
 
@@ -260,8 +218,9 @@ function organization_entry_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'above',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'text_default',
         'weight' => 0,
       ),
     ),
@@ -300,8 +259,9 @@ function organization_entry_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'above',
+        'module' => 'email',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'email_default',
         'weight' => 0,
       ),
     ),
@@ -356,7 +316,7 @@ function organization_entry_field_default_field_instances() {
       'module' => 'location_cck',
       'settings' => array(),
       'type' => 'location',
-      'weight' => 9,
+      'weight' => 5,
     ),
   );
 
@@ -393,7 +353,7 @@ function organization_entry_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 7,
+      'weight' => 4,
     ),
   );
 
@@ -413,8 +373,9 @@ function organization_entry_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'above',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'text_default',
         'weight' => 0,
       ),
     ),
@@ -497,7 +458,6 @@ function organization_entry_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('About company');
   t('Address');
-  t('Body');
   t('Comment');
   t('Email');
   t('Location');
