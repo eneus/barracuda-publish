@@ -129,7 +129,7 @@ function organization_entry_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'gmap_marker_file';
-  $strongarm->value = '13';
+  $strongarm->value = '1';
   $export['gmap_marker_file'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -211,6 +211,15 @@ function organization_entry_strongarm() {
   $strongarm->name = 'location_usegmap';
   $strongarm->value = 1;
   $export['location_usegmap'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_organization';
+  $strongarm->value = array(
+    0 => 'status',
+  );
+  $export['node_options_organization'] = $strongarm;
 
   return $export;
 }
