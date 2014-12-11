@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Organization entry feature.
+ */
+
+include_once 'organization_entry.features.inc';
