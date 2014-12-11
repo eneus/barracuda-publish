@@ -79,7 +79,7 @@ function galauto_logbook_content_type_view_views_default_views() {
   $handler->display->display_options['filters']['shs_term_node_tid_depth']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['shs_term_node_tid_depth']['vocabulary'] = 'auto_created_voc2_956';
   $handler->display->display_options['filters']['shs_term_node_tid_depth']['error_message'] = FALSE;
-  $handler->display->display_options['filters']['shs_term_node_tid_depth']['depth'] = '0';
+  $handler->display->display_options['filters']['shs_term_node_tid_depth']['depth'] = '2';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
