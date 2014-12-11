@@ -17,13 +17,5 @@ function galauto_generation_content_type_taxonomy_default_vocabularies() {
       'module' => 'taxonomy',
       'weight' => 0,
     ),
-    'cars_body_type' => array(
-      'name' => 'Cars Body type',
-      'machine_name' => 'cars_body_type',
-      'description' => '',
-      'hierarchy' => 0,
-      'module' => 'taxonomy',
-      'weight' => 0,
-    ),
   );
 }

@@ -65,45 +65,6 @@ function galauto_generation_content_type_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-cars-field_body_type'
-  $field_instances['node-cars-field_body_type'] = array(
-    'bundle' => 'cars',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_plain',
-        'weight' => 2,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_body_type',
-    'label' => 'Body type',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
-      'type' => 'options_select',
-      'weight' => 9,
-    ),
-  );
-
   // Exported field_instance: 'node-cars-field_brand'
   $field_instances['node-cars-field_brand'] = array(
     'bundle' => 'cars',
@@ -344,88 +305,6 @@ function galauto_generation_content_type_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-cars-field_number_of_doors'
-  $field_instances['node-cars-field_number_of_doors'] = array(
-    'bundle' => 'cars',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'number',
-        'settings' => array(),
-        'type' => 'number_unformatted',
-        'weight' => 3,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_number_of_doors',
-    'label' => 'Number of doors',
-    'required' => 0,
-    'settings' => array(
-      'max' => '',
-      'min' => 0,
-      'prefix' => '',
-      'suffix' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 11,
-    ),
-  );
-
-  // Exported field_instance: 'node-cars-field_number_of_seats'
-  $field_instances['node-cars-field_number_of_seats'] = array(
-    'bundle' => 'cars',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'number',
-        'settings' => array(),
-        'type' => 'number_unformatted',
-        'weight' => 4,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_number_of_seats',
-    'label' => 'Number of seats',
-    'required' => 0,
-    'settings' => array(
-      'max' => '',
-      'min' => 0,
-      'prefix' => '',
-      'suffix' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 12,
-    ),
-  );
-
   // Exported field_instance: 'node-cars-field_period'
   $field_instances['node-cars-field_period'] = array(
     'bundle' => 'cars',
@@ -578,13 +457,10 @@ function galauto_generation_content_type_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
-  t('Body type');
   t('Brand');
   t('Car_Icon');
   t('Complectation');
   t('Image cars');
-  t('Number of doors');
-  t('Number of seats');
   t('Period');
   t('Rating');
   t('Video link');

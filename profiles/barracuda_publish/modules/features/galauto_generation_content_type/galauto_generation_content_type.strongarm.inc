@@ -87,10 +87,10 @@ function galauto_generation_content_type_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '0',
+          'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '1',
+          'weight' => '30',
         ),
       ),
       'display' => array(),
