@@ -27,12 +27,28 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'vocabulary_machine_name' => 'number_of_valves_per_cylinder',
   );
   $terms[] = array(
+    'name' => 'A-95',
+    'description' => '',
+    'format' => 'filtered_html',
+    'weight' => 3,
+    'uuid' => '0345dc10-0d87-4bf3-b39e-3b1e76798447',
+    'vocabulary_machine_name' => 'petrol_types',
+  );
+  $terms[] = array(
     'name' => 5,
     'description' => '',
     'format' => 'filtered_html',
     'weight' => 4,
     'uuid' => '0b4b94a6-0d5f-4f2a-bc4f-dfa5e99a72c5',
     'vocabulary_machine_name' => 'number_of_valves_per_cylinder',
+  );
+  $terms[] = array(
+    'name' => 'A-80',
+    'description' => '',
+    'format' => 'filtered_html',
+    'weight' => 1,
+    'uuid' => '0bdd8109-104a-4f82-842d-74ed6c95bd6d',
+    'vocabulary_machine_name' => 'petrol_types',
   );
   $terms[] = array(
     'name' => 'Cam and roller steering gear',
@@ -62,7 +78,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'Gas',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 8,
+    'weight' => 3,
     'uuid' => '18d18102-8568-415a-bd43-2669bb0a7d83',
     'vocabulary_machine_name' => 'engine_type',
   );
@@ -97,6 +113,14 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'weight' => 12,
     'uuid' => '22beb334-be30-40d8-9009-f3d36c148d1d',
     'vocabulary_machine_name' => 'cars_body_type',
+  );
+  $terms[] = array(
+    'name' => 'A-98',
+    'description' => '',
+    'format' => 'filtered_html',
+    'weight' => 4,
+    'uuid' => '263532c8-b581-4d9b-a302-fa82848118e6',
+    'vocabulary_machine_name' => 'petrol_types',
   );
   $terms[] = array(
     'name' => 'Continuous injection',
@@ -134,7 +158,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'Swing axle',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 6,
+    'weight' => 3,
     'uuid' => '35d08eb9-9d22-4d9a-a3f9-0ee3bd2b1bc3',
     'vocabulary_machine_name' => 'front_suspension',
   );
@@ -187,12 +211,44 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'vocabulary_machine_name' => 'steering_gear',
   );
   $terms[] = array(
+    'name' => 'Robotized',
+    'description' => '',
+    'format' => 'filtered_html',
+    'weight' => 4,
+    'uuid' => '4dd7a677-2eb6-45fc-805d-6531d41f3c4e',
+    'vocabulary_machine_name' => 'gearbox_types',
+  );
+  $terms[] = array(
+    'name' => 7,
+    'description' => '',
+    'format' => 'filtered_html',
+    'weight' => 6,
+    'uuid' => '543189e1-afd9-4494-8f29-3679606478f4',
+    'vocabulary_machine_name' => 'number_of_valves_per_cylinder',
+  );
+  $terms[] = array(
+    'name' => 'A-92',
+    'description' => '',
+    'format' => 'filtered_html',
+    'weight' => 2,
+    'uuid' => '5505e6df-f163-42ad-95dd-8d2a803ee767',
+    'vocabulary_machine_name' => 'petrol_types',
+  );
+  $terms[] = array(
     'name' => 'Euro V',
     'description' => '',
     'format' => 'filtered_html',
     'weight' => 4,
     'uuid' => '551d1b66-af33-40b6-ab9b-9b63dec1f3ff',
     'vocabulary_machine_name' => 'ecological_standard',
+  );
+  $terms[] = array(
+    'name' => 'A-76',
+    'description' => '',
+    'format' => 'filtered_html',
+    'weight' => 0,
+    'uuid' => '568f7d85-3601-4736-a451-50b4e4fdbd23',
+    'vocabulary_machine_name' => 'petrol_types',
   );
   $terms[] = array(
     'name' => 'Combi coupé',
@@ -230,7 +286,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'Diesel',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 5,
+    'weight' => 0,
     'uuid' => '5ee02179-59d5-4805-b973-130f8d316f23',
     'vocabulary_machine_name' => 'engine_type',
   );
@@ -254,7 +310,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'Ethanol',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 7,
+    'weight' => 2,
     'uuid' => '65b03eb0-5102-4bae-aeb6-620efaca6a86',
     'vocabulary_machine_name' => 'engine_type',
   );
@@ -291,10 +347,10 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'vocabulary_machine_name' => 'cars_body_type',
   );
   $terms[] = array(
-    'name' => 'Trailing link',
+    'name' => 'Trailing link suspension',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 7,
+    'weight' => 4,
     'uuid' => '73cb2aba-f939-4dc7-a506-eeaafb6191e2',
     'vocabulary_machine_name' => 'front_suspension',
   );
@@ -310,7 +366,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'Electric',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 6,
+    'weight' => 1,
     'uuid' => '7ffc53d5-1476-42a1-8438-0f9e8d158966',
     'vocabulary_machine_name' => 'engine_type',
   );
@@ -353,7 +409,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'TipTronic',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 5,
+    'weight' => 6,
     'uuid' => '88f1a7ab-c6dd-4dea-b837-9000997de532',
     'vocabulary_machine_name' => 'gearbox_types',
   );
@@ -428,7 +484,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'MacPherson',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 4,
+    'weight' => 1,
     'uuid' => '977e5917-a318-498e-a7a9-d60f3fbea367',
     'vocabulary_machine_name' => 'front_suspension',
   );
@@ -447,6 +503,14 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'weight' => 5,
     'uuid' => '981d13d2-faa0-4c6a-a042-090ea9ce6597',
     'vocabulary_machine_name' => 'disposition_of_cylinders',
+  );
+  $terms[] = array(
+    'name' => 8,
+    'description' => '',
+    'format' => 'filtered_html',
+    'weight' => 7,
+    'uuid' => '990aff90-072d-4f96-bdbd-65a6b44d8c97',
+    'vocabulary_machine_name' => 'number_of_valves_per_cylinder',
   );
   $terms[] = array(
     'name' => 6,
@@ -503,7 +567,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'Other',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 11,
+    'weight' => 6,
     'uuid' => 'ade79d8a-84e1-40fd-ab1a-8ab050d44eec',
     'vocabulary_machine_name' => 'engine_type',
   );
@@ -538,7 +602,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'Hydrogen',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 10,
+    'weight' => 5,
     'uuid' => 'bbf6fe07-9d18-45b9-87ea-f3871b88fcc9',
     'vocabulary_machine_name' => 'engine_type',
   );
@@ -546,7 +610,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'Semi automatic',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 4,
+    'weight' => 5,
     'uuid' => 'bf2efd19-0c76-454d-9fd5-4f8c1bd60e4e',
     'vocabulary_machine_name' => 'gearbox_types',
   );
@@ -562,7 +626,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'Petrol',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 12,
+    'weight' => 7,
     'uuid' => 'c69c7f23-13b8-452b-a97d-cf166ee8a05f',
     'vocabulary_machine_name' => 'engine_type',
   );
@@ -578,7 +642,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'Solid beam axle',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 5,
+    'weight' => 2,
     'uuid' => 'c9fe24e6-7b6e-49a2-a371-15fc8919f712',
     'vocabulary_machine_name' => 'front_suspension',
   );
@@ -626,7 +690,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'Unequal length double A-arm',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 8,
+    'weight' => 5,
     'uuid' => 'ddfeeeba-6124-41bf-a995-cda583d0af02',
     'vocabulary_machine_name' => 'front_suspension',
   );
@@ -725,7 +789,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'name' => 'Hybrid',
     'description' => '',
     'format' => 'filtered_html',
-    'weight' => 9,
+    'weight' => 4,
     'uuid' => 'fd96c735-59da-4784-b58a-eb66a8ce5fec',
     'vocabulary_machine_name' => 'engine_type',
   );

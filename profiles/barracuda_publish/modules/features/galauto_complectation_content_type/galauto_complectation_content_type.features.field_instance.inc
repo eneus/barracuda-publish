@@ -10,63 +10,6 @@
 function galauto_complectation_content_type_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-complectation-field__measurement'
-  $field_instances['node-complectation-field__measurement'] = array(
-    'bundle' => 'complectation',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 57,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 13,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field__measurement',
-    'label' => 'Measurement',
-    'required' => 0,
-    'settings' => array(
-      'max' => '',
-      'min' => 0,
-      'prefix' => '',
-      'suffix' => 'mm',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 82,
-    ),
-  );
-
   // Exported field_instance: 'node-complectation-field_abs'
   $field_instances['node-complectation-field_abs'] = array(
     'bundle' => 'complectation',
@@ -81,19 +24,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 94,
       ),
@@ -133,17 +64,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 2,
@@ -193,19 +113,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 82,
       ),
@@ -248,19 +156,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 105,
       ),
@@ -303,19 +199,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'inline',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 16,
       ),
@@ -358,19 +242,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 100,
       ),
@@ -413,19 +285,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 109,
       ),
@@ -465,17 +325,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
@@ -507,7 +356,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 85,
+      'weight' => 166,
     ),
   );
 
@@ -525,19 +374,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 104,
       ),
@@ -566,6 +403,45 @@ function galauto_complectation_content_type_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-complectation-field_body_type'
+  $field_instances['node-complectation-field_body_type'] = array(
+    'bundle' => 'complectation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 114,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_body_type',
+    'label' => 'Body type',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 161,
+    ),
+  );
+
   // Exported field_instance: 'node-complectation-field_bumper_in_the_color_of_bod'
   $field_instances['node-complectation-field_bumper_in_the_color_of_bod'] = array(
     'bundle' => 'complectation',
@@ -580,19 +456,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 75,
       ),
@@ -635,19 +499,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 85,
       ),
@@ -690,19 +542,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'inline',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 8,
       ),
@@ -741,19 +581,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'text',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'text_default',
         'weight' => 35,
       ),
@@ -779,7 +607,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 117,
+      'weight' => 119,
     ),
   );
 
@@ -797,19 +625,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'inline',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 11,
       ),
@@ -849,17 +665,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 2,
@@ -906,17 +711,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
@@ -963,17 +757,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 2,
@@ -1005,7 +788,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 120,
+      'weight' => 122,
     ),
   );
 
@@ -1020,17 +803,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 2,
@@ -1076,19 +848,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'text',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'text_default',
         'weight' => 71,
       ),
@@ -1129,17 +889,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
@@ -1185,19 +934,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'taxonomy',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 42,
       ),
@@ -1222,7 +959,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 115,
+      'weight' => 117,
     ),
   );
 
@@ -1240,19 +977,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 84,
       ),
@@ -1295,19 +1020,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 98,
       ),
@@ -1350,19 +1063,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 95,
       ),
@@ -1405,19 +1106,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 96,
       ),
@@ -1456,19 +1145,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'taxonomy',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 54,
       ),
@@ -1507,27 +1184,15 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
-        'weight' => 110,
+        'weight' => 116,
       ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 51,
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
@@ -1540,8 +1205,10 @@ function galauto_complectation_content_type_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
       'weight' => 111,
     ),
   );
@@ -1556,19 +1223,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'text',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'text_default',
         'weight' => 68,
       ),
@@ -1594,7 +1249,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 122,
+      'weight' => 124,
     ),
   );
 
@@ -1607,21 +1262,9 @@ function galauto_complectation_content_type_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
-        'type' => 'taxonomy_term_reference_link',
+        'module' => 'hs_taxonomy',
+        'settings' => array(),
+        'type' => 'hs_taxonomy_term_reference_hierarchical_text',
         'weight' => 40,
       ),
       'teaser' => array(
@@ -1663,19 +1306,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 99,
       ),
@@ -1714,19 +1345,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'taxonomy',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 47,
       ),
@@ -1769,19 +1388,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 102,
       ),
@@ -1824,19 +1431,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 83,
       ),
@@ -1875,19 +1470,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'taxonomy',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 58,
       ),
@@ -1927,17 +1510,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
@@ -1969,7 +1541,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 84,
+      'weight' => 165,
     ),
   );
 
@@ -1984,17 +1556,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 2,
@@ -2040,19 +1601,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'taxonomy',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 41,
       ),
@@ -2077,7 +1626,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 114,
+      'weight' => 115,
     ),
   );
 
@@ -2092,17 +1641,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
@@ -2149,17 +1687,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
@@ -2206,17 +1733,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
@@ -2263,19 +1779,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'taxonomy',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 43,
       ),
@@ -2319,19 +1823,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'inline',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 14,
       ),
@@ -2374,19 +1866,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 78,
       ),
@@ -2429,19 +1909,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 108,
       ),
@@ -2484,19 +1952,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 77,
       ),
@@ -2539,19 +1995,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 87,
       ),
@@ -2594,19 +2038,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 91,
       ),
@@ -2635,6 +2067,46 @@ function galauto_complectation_content_type_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-complectation-field_id_complectation'
+  $field_instances['node-complectation-field_id_complectation'] = array(
+    'bundle' => 'complectation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 115,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_id_complectation',
+    'label' => 'Id complectation',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 3,
+    ),
+  );
+
   // Exported field_instance: 'node-complectation-field_ldws'
   $field_instances['node-complectation-field_ldws'] = array(
     'bundle' => 'complectation',
@@ -2649,19 +2121,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 107,
       ),
@@ -2704,19 +2164,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 80,
       ),
@@ -2759,19 +2207,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'inline',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 13,
       ),
@@ -2810,19 +2246,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'taxonomy',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 46,
       ),
@@ -2862,17 +2286,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
@@ -2919,17 +2332,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
@@ -2961,7 +2363,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 87,
+      'weight' => 168,
     ),
   );
 
@@ -2976,17 +2378,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
@@ -3018,7 +2409,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 88,
+      'weight' => 169,
     ),
   );
 
@@ -3036,19 +2427,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 89,
       ),
@@ -3088,17 +2467,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
@@ -3130,7 +2498,53 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 116,
+      'weight' => 118,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_number_of_doors'
+  $field_instances['node-complectation-field_number_of_doors'] = array(
+    'bundle' => 'complectation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 112,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_number_of_doors',
+    'label' => 'Number of doors',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => 0,
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 162,
     ),
   );
 
@@ -3145,17 +2559,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
@@ -3191,6 +2594,52 @@ function galauto_complectation_content_type_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-complectation-field_number_of_seats'
+  $field_instances['node-complectation-field_number_of_seats'] = array(
+    'bundle' => 'complectation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 113,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_number_of_seats',
+    'label' => 'Number of seats',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => 0,
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 163,
+    ),
+  );
+
   // Exported field_instance: 'node-complectation-field_number_of_valves_per_cylin'
   $field_instances['node-complectation-field_number_of_valves_per_cylin'] = array(
     'bundle' => 'complectation',
@@ -3201,19 +2650,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'taxonomy',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 56,
       ),
@@ -3238,7 +2675,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 119,
+      'weight' => 121,
     ),
   );
 
@@ -3256,19 +2693,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 90,
       ),
@@ -3311,19 +2736,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'inline',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 12,
       ),
@@ -3352,57 +2765,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-complectation-field_petrol_type'
-  $field_instances['node-complectation-field_petrol_type'] = array(
-    'bundle' => 'complectation',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 44,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 24,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_petrol_type',
-    'label' => 'Petrol type',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
-      'type' => 'options_select',
-      'weight' => 118,
-    ),
-  );
-
   // Exported field_instance: 'node-complectation-field_piston_stroke'
   $field_instances['node-complectation-field_piston_stroke'] = array(
     'bundle' => 'complectation',
@@ -3414,17 +2776,6 @@ function galauto_complectation_content_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 2,
@@ -3456,7 +2807,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 121,
+      'weight' => 123,
     ),
   );
 
@@ -3512,6 +2863,95 @@ function galauto_complectation_content_type_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-complectation-field_power_by_revolutions'
+  $field_instances['node-complectation-field_power_by_revolutions'] = array(
+    'bundle' => 'complectation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 29,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_power_by_revolutions',
+    'label' => 'Power by revolutions',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 114,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_power_steering'
+  $field_instances['node-complectation-field_power_steering'] = array(
+    'bundle' => 'complectation',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 81,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_power_steering',
+    'label' => 'Power steering',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 9,
+    ),
+  );
+
   // Exported field_instance: 'node-complectation-field_price'
   $field_instances['node-complectation-field_price'] = array(
     'bundle' => 'complectation',
@@ -3520,29 +2960,21 @@ function galauto_complectation_content_type_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
-        'module' => 'text',
+        'label' => 'above',
+        'module' => 'number',
         'settings' => array(
-          'custom_link_to_entity' => 0,
-          'custom_prefix' => '',
-          'custom_reverse' => 0,
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => 0,
-          'custom_strtolower' => 0,
-          'custom_strtoupper' => 0,
-          'custom_suffix' => ' $',
-          'custom_trim' => 0,
-          'custom_ucfirst' => 0,
-          'custom_ucwords' => 0,
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
         ),
-        'type' => 'text_default',
-        'weight' => 15,
+        'type' => 'number_integer',
+        'weight' => 117,
       ),
       'teaser' => array(
         'label' => 'above',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'hidden',
         'weight' => 0,
       ),
     ),
@@ -3551,16 +2983,17 @@ function galauto_complectation_content_type_field_default_field_instances() {
     'label' => 'Price',
     'required' => 0,
     'settings' => array(
-      'text_processing' => 0,
+      'max' => '',
+      'min' => '',
+      'prefix' => '$',
+      'suffix' => '',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 40,
-      ),
-      'type' => 'text_textfield',
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
       'weight' => 1,
     ),
   );
@@ -3579,19 +3012,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'default' => array(
         'label' => 'inline',
         'module' => 'list',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
+        'settings' => array(),
         'type' => 'list_default',
         'weight' => 10,
       ),
@@ -3620,6 +3041,897 @@ function galauto_complectation_content_type_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-complectation-field_ratio_of_main_pair'
+  $field_instances['node-complectation-field_ratio_of_main_pair'] = array(
+    'bundle' => 'complectation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 2,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 65,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_ratio_of_main_pair',
+    'label' => 'Ratio of main pair',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 99,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_rear_brakes'
+  $field_instances['node-complectation-field_rear_brakes'] = array(
+    'bundle' => 'complectation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 48,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_rear_brakes',
+    'label' => 'Rear brakes',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 100,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_rear_suspension_type'
+  $field_instances['node-complectation-field_rear_suspension_type'] = array(
+    'bundle' => 'complectation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 59,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_rear_suspension_type',
+    'label' => 'Rear suspension type',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 108,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_rear_view_camera'
+  $field_instances['node-complectation-field_rear_view_camera'] = array(
+    'bundle' => 'complectation',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 92,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_rear_view_camera',
+    'label' => 'Rear-view camera',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 24,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_rear_view_mirror_with_auto'
+  $field_instances['node-complectation-field_rear_view_mirror_with_auto'] = array(
+    'bundle' => 'complectation',
+    'default_value' => array(
+      0 => array(
+        'value' => 1,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 79,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_rear_view_mirror_with_auto',
+    'label' => 'Rear view mirror with automatic darkening',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 132,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_road_clearance'
+  $field_instances['node-complectation-field_road_clearance'] = array(
+    'bundle' => 'complectation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 55,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_road_clearance',
+    'label' => 'Road clearance',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => 0,
+      'prefix' => '',
+      'suffix' => 'mm',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 167,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_rvm'
+  $field_instances['node-complectation-field_rvm'] = array(
+    'bundle' => 'complectation',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 106,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_rvm',
+    'label' => 'RVM',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 147,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_start_stop_system'
+  $field_instances['node-complectation-field_start_stop_system'] = array(
+    'bundle' => 'complectation',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 93,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_start_stop_system',
+    'label' => 'Start-Stop System',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 25,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_steering_gear_type'
+  $field_instances['node-complectation-field_steering_gear_type'] = array(
+    'bundle' => 'complectation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 67,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_steering_gear_type',
+    'label' => 'Steering gear type',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 125,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_tcs'
+  $field_instances['node-complectation-field_tcs'] = array(
+    'bundle' => 'complectation',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 97,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_tcs',
+    'label' => 'TCS',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 138,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_timing_mechanism'
+  $field_instances['node-complectation-field_timing_mechanism'] = array(
+    'bundle' => 'complectation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 32,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_timing_mechanism',
+    'label' => 'Timing mechanism',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 120,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_tire_size'
+  $field_instances['node-complectation-field_tire_size'] = array(
+    'bundle' => 'complectation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 53,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_tire_size',
+    'label' => 'Tire size',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 105,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_toned_rear_windows'
+  $field_instances['node-complectation-field_toned_rear_windows'] = array(
+    'bundle' => 'complectation',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 74,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_toned_rear_windows',
+    'label' => 'Toned rear windows',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 127,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_torque'
+  $field_instances['node-complectation-field_torque'] = array(
+    'bundle' => 'complectation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 36,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_torque',
+    'label' => 'Torque',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 116,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_tpms'
+  $field_instances['node-complectation-field_tpms'] = array(
+    'bundle' => 'complectation',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 101,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_tpms',
+    'label' => 'TPMS',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 142,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_turbo'
+  $field_instances['node-complectation-field_turbo'] = array(
+    'bundle' => 'complectation',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 62,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_turbo',
+    'label' => 'Turbo',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 125,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_turning_on_the_lights_auto'
+  $field_instances['node-complectation-field_turning_on_the_lights_auto'] = array(
+    'bundle' => 'complectation',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 103,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_turning_on_the_lights_auto',
+    'label' => 'Turning on the lights automaticly',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 144,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_wheel_base'
+  $field_instances['node-complectation-field_wheel_base'] = array(
+    'bundle' => 'complectation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 23,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_wheel_base',
+    'label' => 'Wheel base',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => 0,
+      'prefix' => '',
+      'suffix' => 'mm',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 164,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_winder_s_electric_linkage'
+  $field_instances['node-complectation-field_winder_s_electric_linkage'] = array(
+    'bundle' => 'complectation',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 86,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_winder_s_electric_linkage',
+    'label' => 'Winders’ electric linkage',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 14,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_winders_in_the_color_of_bo'
+  $field_instances['node-complectation-field_winders_in_the_color_of_bo'] = array(
+    'bundle' => 'complectation',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 76,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_winders_in_the_color_of_bo',
+    'label' => 'Winders in the color of body',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 128,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_winders_s_folding_electric'
+  $field_instances['node-complectation-field_winders_s_folding_electric'] = array(
+    'bundle' => 'complectation',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 88,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_winders_s_folding_electric',
+    'label' => 'Winders’s folding electric linkage',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 19,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('ABS');
@@ -3631,6 +3943,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
   t('Anti-theft alarm with invasion sensor');
   t('Back tread');
   t('Bi-Xenon');
+  t('Body type');
   t('Bumper in the color of body');
   t('Central lock with remote control');
   t('Climate control');
@@ -3669,25 +3982,49 @@ function galauto_complectation_content_type_field_default_field_instances() {
   t('Hatch');
   t('Headlight prayer under the pressure');
   t('Heating winders’ electric linkage');
+  t('Id complectation');
   t('LDWS');
   t('Leather adornment of steering and gear box lever');
   t('Leather passenger compartment');
   t('Linkage');
   t('Maximum speed');
   t('Maximum trunk’s volume');
-  t('Measurement');
   t('Minimum trunk’s volume');
   t('Multifunctional steering');
   t('Number of cylinders');
+  t('Number of doors');
   t('Number of gears');
+  t('Number of seats');
   t('Number of valves per cylinder');
   t('Onboarder');
   t('Parking sensors');
-  t('Petrol type');
   t('Piston stroke');
   t('Power');
+  t('Power by revolutions');
+  t('Power steering');
   t('Price');
+  t('RVM');
   t('Rain sensor');
+  t('Ratio of main pair');
+  t('Rear brakes');
+  t('Rear suspension type');
+  t('Rear view mirror with automatic darkening');
+  t('Rear-view camera');
+  t('Road clearance');
+  t('Start-Stop System');
+  t('Steering gear type');
+  t('TCS');
+  t('TPMS');
+  t('Timing mechanism');
+  t('Tire size');
+  t('Toned rear windows');
+  t('Torque');
+  t('Turbo');
+  t('Turning on the lights automaticly');
+  t('Wheel base');
+  t('Winders in the color of body');
+  t('Winders’ electric linkage');
+  t('Winders’s folding electric linkage');
 
   return $field_instances;
 }

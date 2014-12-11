@@ -127,6 +127,7 @@ function galauto_complectation_content_type_strongarm() {
   $strongarm->name = 'node_options_complectation';
   $strongarm->value = array(
     0 => 'status',
+    1 => 'promote',
   );
   $export['node_options_complectation'] = $strongarm;
 
