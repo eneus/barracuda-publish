@@ -180,17 +180,18 @@ function galauto_generation_content_type_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'auto_formater_reference',
+        'module' => 'entityreference',
         'settings' => array(
+          'link' => FALSE,
           'links' => TRUE,
           'view_mode' => 'default',
         ),
-        'type' => 'my_formater',
+        'type' => 'entityreference_label',
         'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
-        'module' => 'auto_formater_reference',
+        'module' => 'entityreference',
         'settings' => array(
           'custom_link_to_entity' => 0,
           'custom_prefix' => '',
@@ -203,10 +204,11 @@ function galauto_generation_content_type_field_default_field_instances() {
           'custom_trim' => 0,
           'custom_ucfirst' => 0,
           'custom_ucwords' => 0,
+          'link' => FALSE,
           'links' => TRUE,
           'view_mode' => 'teaser',
         ),
-        'type' => 'my_formater',
+        'type' => 'entityreference_label',
         'weight' => 1,
       ),
     ),
