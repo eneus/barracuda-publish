@@ -1,0 +1,10 @@
+name = Bootstap Modal Search
+description = Bootstap Modal Search module.
+package = Galauto
+core = 7.x
+
+; Information added by Drupal.org 
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "galauto"
+datestamp = "1412398934"

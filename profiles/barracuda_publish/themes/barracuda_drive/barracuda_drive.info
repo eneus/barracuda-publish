@@ -16,6 +16,8 @@ scripts[] = js/bootstrap/bootstrap-dropdown.js
 scripts[] = js/waypoints.js
 scripts[] = js/navbar.js
 
+regions[bootstrap_modal_search_region] = 	  Bootstrap Modal Search Region
+
 regions[header_left_menu] = 	   Header Left Menu
 regions[header_right_menu] = 	   Header Right Menu
 

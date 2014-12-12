@@ -90,7 +90,19 @@
       <?php print render($page['header_right']); ?>
     </div></div> <!-- /.section, /#featured -->
   <?php endif; ?>
+
+
+  <?php if ($page['bootstrap_modal_search_region']): ?>
+      <div id="bootstrap_modal_search_region_id" class="bootstrap_modal_search_region_class">
+        <div class="section_bootstrap_modal_search">
+          <?php print render($page['bootstrap_modal_search_region']); ?>
+        </div>
+      </div> <!-- /.section, /#sidebar-first -->
+  <?php endif; ?>
+
+
   </div><!-- /#header-blocks -->
+
 <div  id="sticky-menu" style="height: auto;">
   <div id="main-menu" style="top: 0.311011px;" class="">
    <div class="container">

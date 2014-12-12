@@ -1,0 +1,3 @@
+<?php
+
+ 	drupal_add_js(drupal_get_path('profiles', 'baracuda_publish') . 'libraries/bootstrap/js/bootstrap.js');
