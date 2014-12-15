@@ -356,7 +356,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 166,
+      'weight' => 167,
     ),
   );
 
@@ -1541,7 +1541,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 165,
+      'weight' => 166,
     ),
   );
 
@@ -2363,7 +2363,53 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 168,
+      'weight' => 169,
+    ),
+  );
+
+  // Exported field_instance: 'node-complectation-field_measurement'
+  $field_instances['node-complectation-field_measurement'] = array(
+    'bundle' => 'complectation',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 118,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_measurement',
+    'label' => 'Measurement',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => 0,
+      'prefix' => '',
+      'suffix' => 'mm',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 164,
     ),
   );
 
@@ -2409,7 +2455,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 169,
+      'weight' => 170,
     ),
   );
 
@@ -3293,7 +3339,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 167,
+      'weight' => 168,
     ),
   );
 
@@ -3799,7 +3845,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 164,
+      'weight' => 165,
     ),
   );
 
@@ -3989,6 +4035,7 @@ function galauto_complectation_content_type_field_default_field_instances() {
   t('Linkage');
   t('Maximum speed');
   t('Maximum trunk’s volume');
+  t('Measurement');
   t('Minimum trunk’s volume');
   t('Multifunctional steering');
   t('Number of cylinders');

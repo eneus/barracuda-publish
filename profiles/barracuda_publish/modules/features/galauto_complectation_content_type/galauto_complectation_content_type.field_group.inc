@@ -32,6 +32,7 @@ function galauto_complectation_content_type_field_group_info() {
       6 => 'field_number_of_doors',
       7 => 'field_number_of_seats',
       8 => 'field_body_type',
+      9 => 'field_measurement',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
