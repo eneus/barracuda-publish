@@ -27,28 +27,12 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'vocabulary_machine_name' => 'number_of_valves_per_cylinder',
   );
   $terms[] = array(
-    'name' => 'A-95',
-    'description' => '',
-    'format' => 'filtered_html',
-    'weight' => 3,
-    'uuid' => '0345dc10-0d87-4bf3-b39e-3b1e76798447',
-    'vocabulary_machine_name' => 'petrol_types',
-  );
-  $terms[] = array(
     'name' => 5,
     'description' => '',
     'format' => 'filtered_html',
     'weight' => 4,
     'uuid' => '0b4b94a6-0d5f-4f2a-bc4f-dfa5e99a72c5',
     'vocabulary_machine_name' => 'number_of_valves_per_cylinder',
-  );
-  $terms[] = array(
-    'name' => 'A-80',
-    'description' => '',
-    'format' => 'filtered_html',
-    'weight' => 1,
-    'uuid' => '0bdd8109-104a-4f82-842d-74ed6c95bd6d',
-    'vocabulary_machine_name' => 'petrol_types',
   );
   $terms[] = array(
     'name' => 'Cam and roller steering gear',
@@ -113,14 +97,6 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'weight' => 12,
     'uuid' => '22beb334-be30-40d8-9009-f3d36c148d1d',
     'vocabulary_machine_name' => 'cars_body_type',
-  );
-  $terms[] = array(
-    'name' => 'A-98',
-    'description' => '',
-    'format' => 'filtered_html',
-    'weight' => 4,
-    'uuid' => '263532c8-b581-4d9b-a302-fa82848118e6',
-    'vocabulary_machine_name' => 'petrol_types',
   );
   $terms[] = array(
     'name' => 'Continuous injection',
@@ -227,28 +203,12 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'vocabulary_machine_name' => 'number_of_valves_per_cylinder',
   );
   $terms[] = array(
-    'name' => 'A-92',
-    'description' => '',
-    'format' => 'filtered_html',
-    'weight' => 2,
-    'uuid' => '5505e6df-f163-42ad-95dd-8d2a803ee767',
-    'vocabulary_machine_name' => 'petrol_types',
-  );
-  $terms[] = array(
     'name' => 'Euro V',
     'description' => '',
     'format' => 'filtered_html',
     'weight' => 4,
     'uuid' => '551d1b66-af33-40b6-ab9b-9b63dec1f3ff',
     'vocabulary_machine_name' => 'ecological_standard',
-  );
-  $terms[] = array(
-    'name' => 'A-76',
-    'description' => '',
-    'format' => 'filtered_html',
-    'weight' => 0,
-    'uuid' => '568f7d85-3601-4736-a451-50b4e4fdbd23',
-    'vocabulary_machine_name' => 'petrol_types',
   );
   $terms[] = array(
     'name' => 'Combi coupé',

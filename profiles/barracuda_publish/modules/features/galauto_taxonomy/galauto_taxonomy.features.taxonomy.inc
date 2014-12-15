@@ -239,29 +239,6 @@ function galauto_taxonomy_taxonomy_default_vocabularies() {
         ),
       ),
     ),
-    'petrol_types' => array(
-      'name' => 'Petrol types',
-      'machine_name' => 'petrol_types',
-      'description' => '',
-      'hierarchy' => 0,
-      'module' => 'taxonomy',
-      'weight' => 0,
-      'rdf_mapping' => array(
-        'rdftype' => array(
-          0 => 'skos:ConceptScheme',
-        ),
-        'name' => array(
-          'predicates' => array(
-            0 => 'dc:title',
-          ),
-        ),
-        'description' => array(
-          'predicates' => array(
-            0 => 'rdfs:comment',
-          ),
-        ),
-      ),
-    ),
     'steering_gear' => array(
       'name' => 'Steering gear',
       'machine_name' => 'steering_gear',
