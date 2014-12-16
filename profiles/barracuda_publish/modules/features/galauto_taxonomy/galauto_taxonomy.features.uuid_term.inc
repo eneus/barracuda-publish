@@ -500,6 +500,14 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'vocabulary_machine_name' => 'cars_body_type',
   );
   $terms[] = array(
+    'name' => 'Pickup',
+    'description' => '',
+    'format' => 'filtered_html',
+    'weight' => 13,
+    'uuid' => 'a4a592ef-bcc4-4bc1-a939-860f24e59016',
+    'vocabulary_machine_name' => 'cars_body_type',
+  );
+  $terms[] = array(
     'name' => 'Multiport fuel injection',
     'description' => '',
     'format' => 'filtered_html',
