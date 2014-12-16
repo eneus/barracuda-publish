@@ -1775,7 +1775,8 @@ div.vertical-tabs .vertical-tabs-panes fieldset.vertical-tabs-pane {
 }
 #search-form input#edit-keys,
 #block-search-form .form-item-search-block-form input {
-  height: 15px;
+  height: 30px;
+  width: 300px;
   border-radius: 3px 0px 0px 3px;
 }
 #search-block-form input.form-submit,
