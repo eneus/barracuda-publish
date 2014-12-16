@@ -51,7 +51,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'vocabulary_machine_name' => 'linkage',
   );
   $terms[] = array(
-    'name' => 'Torsion bar',
+    'name' => 'Torsion beam',
     'description' => '',
     'format' => 'filtered_html',
     'weight' => 3,
@@ -147,6 +147,14 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'vocabulary_machine_name' => 'cars_body_type',
   );
   $terms[] = array(
+    'name' => 'Rear dependent',
+    'description' => '',
+    'format' => 'filtered_html',
+    'weight' => 0,
+    'uuid' => '3c050b82-61f0-46e4-bf52-5ea89c9c9cfd',
+    'vocabulary_machine_name' => 'front_suspension',
+  );
+  $terms[] = array(
     'name' => 'Boxer',
     'description' => '',
     'format' => 'filtered_html',
@@ -193,6 +201,14 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'weight' => 4,
     'uuid' => '4dd7a677-2eb6-45fc-805d-6531d41f3c4e',
     'vocabulary_machine_name' => 'gearbox_types',
+  );
+  $terms[] = array(
+    'name' => 'De Dion',
+    'description' => '',
+    'format' => 'filtered_html',
+    'weight' => 0,
+    'uuid' => '52700851-f0d5-4baf-9fa1-d67e0fc683ed',
+    'vocabulary_machine_name' => 'front_suspension',
   );
   $terms[] = array(
     'name' => 7,
@@ -567,6 +583,14 @@ function galauto_taxonomy_uuid_features_default_terms() {
     ),
   );
   $terms[] = array(
+    'name' => 'Dependent on springs',
+    'description' => '',
+    'format' => 'filtered_html',
+    'weight' => 0,
+    'uuid' => 'ba052e6a-325b-46e6-be99-32e3066e6e8a',
+    'vocabulary_machine_name' => 'front_suspension',
+  );
+  $terms[] = array(
     'name' => 'Hydrogen',
     'description' => '',
     'format' => 'filtered_html',
@@ -589,6 +613,14 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'weight' => 2,
     'uuid' => 'c27f6256-e1d5-4059-8256-49d506e77e04',
     'vocabulary_machine_name' => 'ecological_standard',
+  );
+  $terms[] = array(
+    'name' => 'Banjo casing',
+    'description' => '',
+    'format' => 'filtered_html',
+    'weight' => 0,
+    'uuid' => 'c29f3f94-f355-4574-bbd2-708535e0ecd9',
+    'vocabulary_machine_name' => 'front_suspension',
   );
   $terms[] = array(
     'name' => 'Petrol',
@@ -706,7 +738,7 @@ function galauto_taxonomy_uuid_features_default_terms() {
     'vocabulary_machine_name' => 'fuel_injection',
   );
   $terms[] = array(
-    'name' => 'Worm and sector steering gear.',
+    'name' => 'Worm and sector steering gear',
     'description' => '',
     'format' => 'filtered_html',
     'weight' => 7,
