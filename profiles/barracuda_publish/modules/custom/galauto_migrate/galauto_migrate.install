@@ -1,0 +1,167 @@
+<?php
+/**
+ * @file
+ * Define install/uninstall hooks for the module.
+ * Define batch operation for meds_taxonomy_migrate module.
+ */
+
+
+define('GALAUTO_MIGRATE_SQL_FILE_NAME', 'auto.sql');
+define('GALAUTO_MIGRATE_SQL_FILE_NAME2', 'english_russian_compliance.sql');
+
+/**
+ * Implements hook_install().
+ */
+function galauto_migrate_install() {
+
+  // Drop tables used as a source for the "topic index" migration process.
+  // Define not check foreign key when drops tables.
+
+  $tables = array(
+    'car_characteristic',
+    'car_characteristic_value',
+    'car_generation',
+    'car_mark',
+    'car_model',
+    'car_modification',
+    'car_serie',
+    'english_russian_compliance',
+  );
+
+  db_query('SET FOREIGN_KEY_CHECKS=0;');
+
+  foreach ($tables as $table) {
+    db_drop_table($table);
+  }
+  galauto_migrate_batch();
+  db_query('SET FOREIGN_KEY_CHECKS=1;');
+}
+
+/**
+ * Define batch operations for migration.
+ */
+function galauto_migrate_batch() {
+
+  $operations = array();
+
+  $filename = drupal_get_path('module', 'galauto_migrate') . '/sql/' . GALAUTO_MIGRATE_SQL_FILE_NAME;
+  $filename2 = drupal_get_path('module', 'galauto_migrate') . '/sql/' . GALAUTO_MIGRATE_SQL_FILE_NAME2;//
+  // Temporary variable, used to store current query.
+  $templine = '';
+  // Read in a entire file.
+
+  //$lines = file($filename);
+  $lines = array_merge(file($filename), file($filename2));//
+
+  // Loop through each line.
+  foreach ($lines as $line) {
+    // Skip it if it's a comment.
+    if (substr($line, 0, 2) == '--' || $line == '') {
+      continue;
+    }
+
+    // Skip database create/change line.
+    if (substr($line, 0, 13) == 'DROP DATABASE') {
+      continue;
+    }
+
+    if (substr($line, 0, 15) == 'CREATE DATABASE') {
+      continue;
+    }
+
+    // Skip sql "USE" commands. That's broke the batch operations.
+    if (substr($line, 0, 3) == 'USE') {
+      continue;
+    }
+
+
+
+    // Add this line to the current segment.
+    $templine .= $line;
+    // If it has a semicolon at the end, it's the end of the query.
+    if (substr(trim($line), -1, 1) == ';') {
+
+      $operations[] = array('galauto_migrate_process_line', array($templine));
+      // Reset temp variable to empty.
+      $templine = '';
+    }
+  }
+
+  $batch = array(
+    'operations' => $operations,
+    'finished' => 'galauto_migrate_finished',
+    'title' => t('Batch for migration "source DB" to drupal DB.'),
+    'init_message' => t('Batch is starting...'),
+    'progress_message' => t('Processed @current out of @total.'),
+    'error_message' => t('Batch has encountered an error.'),
+    'file' => drupal_get_path('module', 'galauto_migrate') . '/galauto_migrate.install',
+  );
+  batch_set($batch);
+  batch_process();
+}
+
+/**
+ * Function for proccessing sql line from file.
+ */
+function galauto_migrate_process_line($line, &$context) {
+  // Ignore bad characters.
+  $line = iconv("utf-8", "utf-8//ignore", $line);
+  $line = trim($line);
+  if (!empty($line)) {
+    try {
+      db_query($line);
+    }
+    catch (Exception $e) {
+      watchdog('galauto_migrate', $e->getMessage());
+    }
+  }
+  // Optional message displayed under the progressbar.
+  $context['message'] = t('Importing @line', array('@line' => $line));
+}
+
+/**
+ * Function that called when batch is finished.
+ */
+function galauto_migrate_finished($success, $results, $operations) {
+  if ($success) {
+    $message = t('Batch processing is succeed...');
+  }
+  else {
+    $error_operation = reset($operations);
+    $message = t('An error occurred while processing !error with arguments : !arguments',
+      array(
+        '!error' => $error_operation[0],
+        '!arguments' => print_r($error_operation[0], TRUE),
+      )
+    );
+  }
+  drupal_set_message($message);
+}
+
+/**
+ * Implements hook_uninstall().
+ *
+ * Drops the tables during the module uninstall process.
+ */
+function galauto_migrate_uninstall() {
+
+  $tables = array(
+    'car_characteristic',
+    'car_characteristic_value',
+    'car_generation',
+    'car_mark',
+    'car_model',
+    'car_modification',
+    'car_serie',
+    'english_russian_compliance',
+  );
+
+  // Define not check foreign key when drops tables.
+  db_query('SET FOREIGN_KEY_CHECKS=0;');
+
+  foreach ($tables as $table) {
+    db_drop_table($table);
+  }
+
+  db_query('SET FOREIGN_KEY_CHECKS=1;');
+}
