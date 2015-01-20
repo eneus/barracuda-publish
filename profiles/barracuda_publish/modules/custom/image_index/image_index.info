@@ -1,0 +1,9 @@
+name = Image Index
+description = Adds an image field to Apache Solr index
+package = Search Toolkit
+core = 7.x
+version = "7.x-1.0-dev"
+
+
+
+

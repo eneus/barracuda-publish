@@ -1,0 +1,16 @@
+<?php 
+
+/**Build the documents before sending them to Solr.*/
+function image_index_apachesolr_index_document_build_node(ApacheSolrDocument $document, $entity, $env_id) {
+  if (isset($entity->field_car_icon[LANGUAGE_NONE][0]['uri'])) {
+    foreach ($entity->field_car_icon as $lang) 
+      foreach ($lang as $image) { 
+       $document->addField('ss_field_car_icon', $image['uri']);
+    }
+  }
+}
+
+/**Prepare the query by adding parameters, sorts, etc.*/
+function image_index_apachesolr_query_prepare(DrupalSolrQueryInterface $query) {
+  $query->addParam('fl', 'ss_field_car_icon');
+}

@@ -1,0 +1,27 @@
+/**
+ * @file
+ *   Adds some styles to the standard Drupal autocomplete widget.
+ */
+.apachesolr-live-results {
+}
+.apachesolr-live-results.message {
+  font-size:80%;
+  color:#888;
+}
+.apachesolr-live-results.count {
+  float:right;
+}
+div.apachesolr-live-results.suggestion {
+  display:inline;
+  float:left;
+}
+div.ac_results li {
+  list-style:none;
+  background-image: none !important;
+}
+#image{
+    height: 30px;
+    width: 40px;
+    float:left;
+    margin-right: 10px;
+}
